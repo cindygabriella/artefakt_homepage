@@ -20,7 +20,8 @@ function setup() {
     redraw();
   });
 
-  createCanvas(1500, 800);
+  let can = createCanvas(1500, 800);
+  can.parent('grafik1');
   textSize(10);
   noLoop();
   //pixelDensity(10);
@@ -64,6 +65,8 @@ function draw() {
     return d.year;
   });
 
+
+
     //Anzahl Jahre rechnen
   var yearCount = yearMax - yearMin;
   for (var i = 0; i < data.length; i++) {
@@ -85,10 +88,13 @@ function draw() {
     push();                    // <- push a drawing context
     // translate(x, y);        // <- move to position
     //rect(0, 0, w, h);
-    rect(x, 0, w, y);           // <- draw a rectangle
+   // rect(x, 0, w, y);           // <- draw a rectangle
+    rect(x, height-y, w, y);
     fill(255);                 // <- change colors
 
-    text(d.Record, 10, h / 2);  // <- draw the label
+    text(d.Record, x,height-y);  // <- draw the label
+    noStroke();
+    text(d.Record, 10,10);
     pop();                     // <- reset the drawing context
   }
 
@@ -97,7 +103,11 @@ function draw() {
 
   // test slider
   totalSlider = createSlider(d.Total);
-  totalSlider.position(600, 600);
+  totalSlider.parent('grafik1-ui');
+  totalSlider.position(10,0);
+  // totalSlider.style('left','50px');
+  // totalSlider.style('top','30px');
+ // totalSlider.style('position','relative');
 
   const total = totalSlider.value();
   text('total', totalSlider.x * 2 + totalSlider.width, totalSlider.height);
