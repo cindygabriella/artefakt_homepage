@@ -1,0 +1,173 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  display: block;
+  margin-left: 10px;
+  height: 100%;
+}
+
+canvas {
+  align-items: center;
+  width: 100%;
+}
+
+h2 {
+  font-style: italic;
+  margin-left: 30px;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+
+div {
+  display: block;
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-family: Helvetica;
+
+}
+
+
+.header {
+  font-family: Helvetica;
+    width: 100%;
+    margin: 0 auto;
+    height: 118px;
+    /* background: black; */
+    /* padding-bottom: 7px; */
+    background-color: #fff;
+    /* box-shadow: 0 0 10px rgba(0,0,0,.2); */
+    /* -webkit-box-shadow: 0 0 10px rgba(0,0,0,.2); */
+    position: relative;
+    text-align: center;
+    }
+
+.header-link {
+    font-size: 22px;
+    font-weight: 700;
+    position: absolute;
+    /* top: 18px; */
+    left: 27px;
+    text-align: center;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 0px;
+    /* background-image: url(logo.png); */
+    /* background-size: cover; */
+    /* color: white; */
+    height: 72px;
+    width: 244px;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    left: 0px;
+    right: 0px;
+}
+
+.opener {
+  font-family: Helvetica;
+  font-weight: 400;
+  font-size: 15px;
+  text-align: left;
+  text-transform: uppercase;
+  position: absolute;
+  left: 21px;
+  width: 150px;
+}
+
+.hintergrund {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* background-color: #F0FFF0; */
+}
+
+/* The side navigation menu */
+.sidenav {
+  font-family: Helvetica;
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  left: 0;
+  background-color: #F0FFF0;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+  object-position: center;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.footer {
+  font-size: 12px;
+  display: block;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: black;
+  text-align: center;
+}
+
+#defaultCanvas0 {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.p5Canvas {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+script {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
