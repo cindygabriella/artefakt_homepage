@@ -12,19 +12,19 @@ function setup() {
     };
   }).then(function (csv) {
     data = csv;
-    // console.log(data);
     ready = true;
     redraw();
   });
 
-  let can = createCanvas(1500, 400);
+  let can = createCanvas(1700, 400);
   can.parent('grafik1');
-  textSize(10);
+  textSize(11);
   //pixelDensity(10);
 
-  slider = createSlider(1950, 2015, 1960);
+  slider = createSlider(1951, 2015, 1951);
   slider.parent('grafik1-ui');
-  slider.position(100,600);
+  slider.position(110, 600);
+
 }
 
 function draw() {
@@ -63,11 +63,8 @@ function draw() {
     return d.Year;
   });
 
-
-  // test slider
-
   var val = slider.value();
-  console.log(val);
+  // console.log(val);
 
 
     //Anzahl Jahre rechnen
@@ -75,7 +72,7 @@ function draw() {
   for (var i = 0; i < data.length; i++) {
     d = data[i];
      //Jahr auf die x-Achse mappen
-    x = map(d.Year, yearMin, yearMax, 0, width);
+    x = map(d.Year, yearMin, val, 0, width);
     //y = (height / d.year) + 10;
      //Globalplasticsproduction auf die y-Achse Mappen
     y = map(d.Globalplasticsproduction, plasticsMin, plasticsMax, 0, 370);
@@ -83,31 +80,19 @@ function draw() {
 
      //Breite des Balkens
     w = width / yearCount;
-    //h = (height * (i / data.length)) - 5;
+
     push();                    // <- push a drawing context
     // translate(x, y);        // <- move to position
     // rect(0, 0, w, h);
     // rect(x, 0, w, y);           // <- draw a rectangle
 
-    // TEST p5.experience.js:
-    // one = uxRect(x, height-y, w, y);
-    // one.uxEvent('hover', trigger);
-
-    rect(x, height-y, w, val);
-
-    // fill(255);                 // <- change colors
+    rect(x, height-y, w, y);
 
     text(d.Year, x,height-y-10);  // <- draw the label
-    text(val, x, height-y-20);
+    text(slider.value(), 0, 190);
     noStroke();
     pop();                     // <- reset the drawing context
   }
-
-
-
-
-
-
 
 
   // const total = slider.value();
