@@ -1,32 +1,30 @@
 var data = [];
 var ready = false;
 
+var slider;
+
 function setup() {
-  d3.csv("csv/Country_Trends.csv", function (d) {
+  d3.csv("csv/globalplasticsproduction.csv", function (d) {
     return {
-      year: +d.year,
-      Record: d.Record,
-      Total: +d.Total
+      Year: +d.Year,
+      ﻿Entity: d.﻿Entity,
+      Globalplasticsproduction: +d.Globalplasticsproduction,
     };
   }).then(function (csv) {
-    //einen der beiden records filtern, so dass es pro
-    //jahr nur einen eintrag gibt
-    data = csv.filter(function (d) {
-      return d.Record == 'BiocapTotGHA';
-    });
-    console.log('data');
-    console.log(data);
+    data = csv;
+    // console.log(data);
     ready = true;
     redraw();
   });
 
-  let can = createCanvas(1500, 800);
+  let can = createCanvas(1500, 400);
   can.parent('grafik1');
   textSize(10);
-  noLoop();
   //pixelDensity(10);
 
-
+  slider = createSlider(1950, 2015, 1960);
+  slider.parent('grafik1-ui');
+  slider.position(100,600);
 }
 
 function draw() {
@@ -35,7 +33,7 @@ function draw() {
     noStroke();
     return;
   } else {
-    background(200);
+    background(255);
   }
 
   var d, x, y, w, h;
@@ -44,27 +42,32 @@ function draw() {
   stroke(255);
 
 
-  //total als Y-Achse, die Jahre als X-Achse.
-  //Maximum Total finden
-  var TotalMin = d3.min(data, function (d) {
-    return d.Total;
+  //Globalplasticsproduction als Y-Achse, Year als X-Achse.
+  // Minimum Globalplasticsproduction finden
+  var plasticsMin = d3.min(data, function (d) {
+    return d.Globalplasticsproduction;
   });
 
-    //Minimum total finden
-  var TotalMax = d3.max(data, function (d) {
-    return d.Total;
+    //Maximum Globalplasticsproduction finden
+  var plasticsMax = d3.max(data, function (d) {
+    return d.Globalplasticsproduction;
   })
 
   //Kleinses Jahr finden
   var yearMin = d3.min(data, function (d) {
-    return d.year;
+    return d.Year;
   });
 
     //Grösstes Jahr finden
   var yearMax = d3.max(data, function (d) {
-    return d.year;
+    return d.Year;
   });
 
+
+  // test slider
+
+  var val = slider.value();
+  console.log(val);
 
 
     //Anzahl Jahre rechnen
@@ -72,57 +75,60 @@ function draw() {
   for (var i = 0; i < data.length; i++) {
     d = data[i];
      //Jahr auf die x-Achse mappen
-    x = map(d.year, yearMin, yearMax, 0, width);
+    x = map(d.Year, yearMin, yearMax, 0, width);
     //y = (height / d.year) + 10;
-     //total auf die y-Achse Mappen
-    y = map(d.Total, TotalMin, TotalMax, 0, 100);
-    //total auf y-Achse mappen, alternative Variante
-    //y = map(d.Total, 0, TotalMax, 0, 100);
+     //Globalplasticsproduction auf die y-Achse Mappen
+    y = map(d.Globalplasticsproduction, plasticsMin, plasticsMax, 0, 370);
 
-    //w = (width / map(d.Total, 7051336451, 20611944995, 0, 100));
+
      //Breite des Balkens
     w = width / yearCount;
     //h = (height * (i / data.length)) - 5;
-    //console.log(d.year,x,yearMin,yearMax);
-    //console.log(d.Total, y);
     push();                    // <- push a drawing context
     // translate(x, y);        // <- move to position
-    //rect(0, 0, w, h);
-   // rect(x, 0, w, y);           // <- draw a rectangle
-    rect(x, height-y, w, y);
-    fill(255);                 // <- change colors
+    // rect(0, 0, w, h);
+    // rect(x, 0, w, y);           // <- draw a rectangle
 
-    text(d.Record, x,height-y);  // <- draw the label
+    // TEST p5.experience.js:
+    // one = uxRect(x, height-y, w, y);
+    // one.uxEvent('hover', trigger);
+
+    rect(x, height-y, w, val);
+
+    // fill(255);                 // <- change colors
+
+    text(d.Year, x,height-y-10);  // <- draw the label
+    text(val, x, height-y-20);
     noStroke();
-    text(d.Record, 10,10);
     pop();                     // <- reset the drawing context
   }
 
 
 
 
-  // test slider
-  totalSlider = createSlider(d.Total);
-  totalSlider.parent('grafik1-ui');
-  totalSlider.position(10,0);
-  // totalSlider.style('left','50px');
-  // totalSlider.style('top','30px');
- // totalSlider.style('position','relative');
 
-  const total = totalSlider.value();
-  text('total', totalSlider.x * 2 + totalSlider.width, totalSlider.height);
+
+
+
+  // const total = slider.value();
+  // text('total', totalSlider.x * 2 + totalSlider.width, totalSlider.height);
   // text(str, x, y, [x2], [y2])
-  rect(total);
+  //  rect(total);
 
 
 
-  // test button - Achsen tauschen
-  button = createButton('Achsen tauschen');
-  button.position(600, 650);
-  button.mousePressed(achsentauschen);
+  // // test button - Achsen tauschen
+  // button = createButton('Achsen tauschen');
+  // button.position(600, 650);
+  // button.mousePressed(achsentauschen);
 }
 
-function achsentauschen() {
-  var val = random(255);
-  background(val);
-}
+// function achsentauschen() {
+//   var val = random(255);
+//   background(val);
+// }
+
+
+// function trigger() {
+//   console.log('uxRect just got clicked!');
+// }
