@@ -7,7 +7,7 @@ function setup() {
   d3.csv("csv/globalplasticsproduction.csv", function (d) {
     return {
       Year: +d.Year,
-      ﻿Entity: d.﻿Entity,
+      Entity: d.Entity,
       Globalplasticsproduction: +d.Globalplasticsproduction,
     };
   }).then(function (csv) {
@@ -48,7 +48,7 @@ function draw() {
     return d.Globalplasticsproduction;
   });
 
-    //Maximum Globalplasticsproduction finden
+  //Maximum Globalplasticsproduction finden
   var plasticsMax = d3.max(data, function (d) {
     return d.Globalplasticsproduction;
   })
@@ -58,7 +58,7 @@ function draw() {
     return d.Year;
   });
 
-    //Grösstes Jahr finden
+  //Grösstes Jahr finden
   var yearMax = d3.max(data, function (d) {
     return d.Year;
   });
@@ -67,28 +67,30 @@ function draw() {
   // console.log(val);
 
 
-    //Anzahl Jahre rechnen
+  //Anzahl Jahre rechnen
   var yearCount = yearMax - yearMin;
   for (var i = 0; i < data.length; i++) {
-    d = data[i];
-     //Jahr auf die x-Achse mappen
-    x = map(d.Year, yearMin, val, 0, width);
+    var d = data[i];
+
+    //Breite des Balkens
+    var w = width / yearCount;
+
+    //Jahr auf die x-Achse mappen
+    //nach width-w mappen damit die breite des letzten balkens noch im canvas platz hat
+    var x = map(d.Year, yearMin, val, 0, width-w);
+    
     //y = (height / d.year) + 10;
-     //Globalplasticsproduction auf die y-Achse Mappen
-    y = map(d.Globalplasticsproduction, plasticsMin, plasticsMax, 0, 370);
-
-
-     //Breite des Balkens
-    w = width / yearCount;
+    //Globalplasticsproduction auf die y-Achse Mappen
+    var y = map(d.Globalplasticsproduction, plasticsMin, plasticsMax, 0, 370);
 
     push();                    // <- push a drawing context
     // translate(x, y);        // <- move to position
     // rect(0, 0, w, h);
     // rect(x, 0, w, y);           // <- draw a rectangle
 
-    rect(x, height-y, w, y);
+    rect(x, height - y, w, y);
 
-    text(d.Year, x,height-y-10);  // <- draw the label
+    text(d.Year, x, height - y - 10);  // <- draw the label
     text(slider.value(), 0, 190);
     noStroke();
     pop();                     // <- reset the drawing context
