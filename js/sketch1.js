@@ -11,7 +11,7 @@ var sketch1 = function (s) {
     s.textSize(11);
     slider = s.createSlider(1951, 2015, 1951);
     //slider.position(110, 600);
-    slider.position(10, 10);
+    slider.position(100, 100);
 
     d3.csv("csv/globalplasticsproduction.csv", function (d) {
       return {
