@@ -8,8 +8,10 @@ var sketch1 = function (s) {
   s.setup = function() {
 
     s.createCanvas(1700, 400);
-    textSize(11);
-
+    s.textSize(11);
+    slider = s.createSlider(1951, 2015, 1951);
+    //slider.position(110, 600);
+    slider.position(10, 10);
 
     d3.csv("csv/globalplasticsproduction.csv", function (d) {
       return {
@@ -20,12 +22,11 @@ var sketch1 = function (s) {
     }).then(function (csv) {
       data = csv;
       ready = true;
-      redraw();
+      s.redraw();
     });
 
 
-    slider = s.createSlider(1951, 2015, 1951);
-    slider.position(110, 600);
+
 
   }
 
@@ -75,11 +76,11 @@ var sketch1 = function (s) {
       var d = data[i];
 
       //Breite des Balkens
-      var w = width / yearCount;
+      var w = s.width / yearCount;
 
       //Jahr auf die x-Achse mappen
       //nach width-w mappen damit die breite des letzten balkens noch im canvas platz hat
-      var x = s.map(d.Year, yearMin, val, 0, width - w);
+      var x = s.map(d.Year, yearMin, val, 0, s.width - w);
 
       //y = (height / d.year) + 10;
       //Globalplasticsproduction auf die y-Achse Mappen
@@ -90,9 +91,9 @@ var sketch1 = function (s) {
       // rect(0, 0, w, h);
       // rect(x, 0, w, y);           // <- draw a rectangle
 
-      s.rect(x, height - y, w, y);
+      s.rect(x, s.height - y, w, y);
 
-      s.text(d.Year, x, height - y - 10);  // <- draw the label
+      s.text(d.Year, x, s.height - y - 10);  // <- draw the label
       s.text(slider.value(), 0, 190);
       s.noStroke();
       s.pop();                     // <- reset the drawing context
