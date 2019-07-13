@@ -21,7 +21,7 @@ function setup() {
   textSize(11);
   //pixelDensity(10);
 
-  slider = createSlider(1951, 2015, 1951);
+  slider = createSlider(1950, 2015, 1950);
   slider.parent('grafik1-ui');
   slider.position(110, 600);
 
@@ -78,7 +78,7 @@ function draw() {
     //Jahr auf die x-Achse mappen
     //nach width-w mappen damit die breite des letzten balkens noch im canvas platz hat
     var x = map(d.Year, yearMin, val, 0, width-w);
-    
+
     //y = (height / d.year) + 10;
     //Globalplasticsproduction auf die y-Achse Mappen
     var y = map(d.Globalplasticsproduction, plasticsMin, plasticsMax, 0, 370);

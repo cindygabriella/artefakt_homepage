@@ -1,12 +1,14 @@
 var data = [];
 var ready = false;
 
+var button;
+
 function setup() {
-  d3.csv("csv/mismanagedplasticwaste.csv", function (d) {
+  d3.csv("csv/recycling.csv", function (d) {
     return {
       Year: +d.Year,
       ﻿Entity: d.﻿Entity,
-      Mismanagedplasticwaste: +d.Mismanagedplasticwaste,
+      plastic: +d.plastic,
     };
   }).then(function (csv) {
     data = csv;
@@ -14,9 +16,14 @@ function setup() {
     redraw();
   });
 
-  createCanvas(1700, 700);
+  createCanvas(700, 700);
   textSize(11);
   //pixelDensity(10);
+
+  // test button - Achsen tauschen
+  button = createButton('Achsen tauschen');
+  button.position(600, 650);
+  button.mousePressed(achsentauschen);
 
 }
 
@@ -29,67 +36,59 @@ function draw() {
     background(255);
   }
 
-  var d, x, y, w, ent, h;
+  var d, x, y, w, h;
 
-  fill('#FOFFFO');
-  stroke(255);
+  fill('#9dc79d');
+  // stroke(255);
 
 
   //Mismanagedplasticwaste als y-Achse, Entity als X-Achse.
   // Minimum Mismanagedplasticwaste finden
-  var mismanagedMin = d3.min(data, function (d) {
-    return d.Mismanagedplasticwaste;
+  var plasticMin = d3.min(data, function (d) {
+    return d.plastic;
   });
 
     //Maximum Mismanagedplasticwaste finden
-  var mismanagedMax = d3.max(data, function (d) {
-    return d.Mismanagedplasticwaste;
+  var plasticMax = d3.max(data, function (d) {
+    return d.plastic;
   })
 
-  // //Kleinses Jahr finden
-  // var yearMin = d3.min(data, function (d) {
-  //   return d.Year;
-  // });
-  //
-  //   //Grösstes Jahr finden
-  // var yearMax = d3.max(data, function (d) {
-  //   return d.Year;
-  // });
 
-    //Anzahl Jahre rechnen
-  var mismanagedCount = mismanagedMax - mismanagedMin;
+  var yearMin = d3.min(data, function (d) {
+     return d.Year;
+  });
 
+  var yearMax = d3.max(data, function (d) {
+     return d.Year;
+  });
 
+  var yearCount = yearMax - yearMin;
   for (var i = 0; i < data.length; i++) {
-    d = data[i];
-    x = d.Entity;
+    var d = data[i];
+
+    var x = map(d.plastic, plasticMin, plasticMax, 0, 700-w);
+
    //Mismanagedplasticwaste auf die x-Achse Mappen
-    y = map(d.Mismanagedplasticwaste, mismanagedMin, mismanagedMax, 0, 650);
+    var y = map(d.Year, yearMin, yearMax, 0, width-w);
 
      //Breite des Balkens
-    w = width / mismanagedCount;
-
+    var w = width / yearCount;
     push();                    // <- push a drawing context
     // translate(x, y);        // <- move to position
 
     rect(x, height-y, w, y);
 
     // text(d.Year, x,height-y-10);  // <- draw the label
-    text(d.Entity, x,height-y-10);
+    text(d.plastic, x,height-y-10);
     noStroke();
     pop();                     // <- reset the drawing context
   }
-
-  // // test button - Achsen tauschen
-  // button = createButton('Achsen tauschen');
-  // button.position(600, 650);
-  // button.mousePressed(achsentauschen);
 }
 
-// function achsentauschen() {
-//   var val = random(255);
-//   background(val);
-// }
+  function achsentauschen() {
+    var val = random(255);
+    background(val);
+  }
 
 
 // function trigger() {
