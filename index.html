@@ -1,68 +1,70 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+<html>
 
-    <script src="js/menu.js"></script>
+<head>
 
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="js/menu.js"></script>
+  <script src="js/p5.min.js"></script>
+  <script src="js/p5.dom.min.js"></script>
+  <script src="js/p5.sound.min.js"></script>
+  <script src="js/d3.v5.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
 
-  </head>
-  <body>
-      <br>
- <!-- Menübar -->
-    <div id="mySidenav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="index.html">HOME</a>
-      <a href="about.html">ÜBER</a>
-      <a href="daten.html">DATEN</a>
-      <a href="impressum.html">IMPRESSUM</a>
-      <a href="fall2.html">FALL 2</a>
+</head>
+
+<body>
+  <br>
+  <!-- Menübar -->
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="index.html">HOME</a>
+    <a href="about.html">ÜBER</a>
+    <a href="daten.html">DATEN</a>
+    <a href="impressum.html">IMPRESSUM</a>
+    <a href="fall2.html">FALL 2</a>
+  </div>
+  <!-- Menübar Ende-->
+
+
+  <div id="main">
+    <div class="header">
+
+      <a class="header-link" href="index.html"><img src="images/logo.png" height="70" width="70"></a>
+      <p class="opener"> <span class="menue"
+          style="font-size:25px;text-decoration:underline;cursor:pointer;margin-left:30px;display: inline-block"
+          onclick="openNav()">MENÜ</span> </p>
     </div>
- <!-- Menübar Ende-->
 
+    <div class="hintergrund">
+      <h1>PLASTIC, PLASTIC, PLASTIC</h1>
+      <h2>How much plastic and waste do we produce? <br> In 1950 the world produced only 2 million tonnes per year. <br>
+        By 2015, annual production had increased nearly 200-fold, reaching 381 million tonnes. <br>
+        For context, this is roughly equivalent to the mass of two-thirds of the world population. <br> Over the period
+        from 1950 to 2015, cumulative production reached 7.8 billion tonnes of plastic, <br>
+        more than one tonne of plastic for every person alive today.</h2>
+    </div>
 
-<div id="main">
-  <div class="header">
+    <br>
 
-    <a class="header-link" href="index.html"><img src="images/logo.png" height="70" width="70"></a>
-    <p class="opener"> <span class="menue" style="font-size:25px;text-decoration:underline;cursor:pointer;margin-left:30px;display: inline-block" onclick="openNav()">MENÜ</span> </p>
-      </div>
+    <!-- <p style="margin-left:30px;">Grafik 1 - Supply and Demand // Angebot und Nachfrage <br> Manipulation: verkürzte Y-Achsenwerte</p> -->
+    <!-- style="position: relative;" damit die Slider position relative to #grafik1 platziert wird -->
+    <div id="grafik1" style="position: relative;"></div>
+    <script src="js/sketch1.js"></script>
+    <br>
 
-      <div class="hintergrund">
-        <h1>PLASTIC, PLASTIC, PLASTIC</h1>
-        <h2>How much plastic and waste do we produce? <br> In 1950 the world produced only 2 million tonnes per year. <br> By 2015, annual production had increased nearly 200-fold, reaching 381 million tonnes. <br>
-        For context, this is roughly equivalent to the mass of two-thirds of the world population. <br> Over the period from 1950 to 2015, cumulative production reached 7.8 billion tonnes of plastic, <br>
-         more than one tonne of plastic for every person alive today.</h2>
-      </div>
+    <div id="grafik2"></div>
+    <script src="js/sketch2.js"></script>
+    <br>
 
-      <br>
-
-      <!-- <p style="margin-left:30px;">Grafik 1 - Supply and Demand // Angebot und Nachfrage <br> Manipulation: verkürzte Y-Achsenwerte</p> -->
-      <!-- style="position: relative;" damit die Slider position relative to #grafik1 platziert wird -->
-      <div id="grafik1" style="position: relative;"></div>
-      <script src="js/p5.min.js"></script>
-      <script src="js/p5.dom.min.js"></script>
-      <script src="js/p5.sound.min.js"></script>
-      <script src="js/d3.v5.min.js"></script>
-      <!-- <script src="js/p5.experience.js"></script>
-      <script src="js/p5.experience.min.js"></script> -->
-      <script src="js/sketch1.js"></script>
-      <br>
-
-      <!-- <div id="grafik2"></div>
-      <script src="js/sketch2.js"></script> -->
-      <br>
-
-
-      <!--   <script src="js/sketch_platzhalter.js"></script> -->
+    <!--   <script src="js/sketch_platzhalter.js"></script> -->
 
 
     <div class="footer">
       <p>© Cindy Gabriella Kipfer-Zumtaugwald - Bachelorarbeit Multimedia Production 2019 HTW Chur</p>
     </div>
 
+  </div>
+</body>
 
-
-</div>
-
-
-</body></html>
+</html>
