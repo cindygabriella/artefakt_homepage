@@ -3,6 +3,7 @@ var ready = false;
 
 var button;
 
+
 function setup() {
   d3.csv("csv/recycling.csv", function (d) {
     return {
@@ -13,7 +14,7 @@ function setup() {
   }).then(function (csv) {
     data = csv;
     ready = true;
-    redraw();
+    //redraw();
   });
 
   createCanvas(700, 700);
@@ -24,7 +25,6 @@ function setup() {
   button = createButton('Achsen tauschen');
   button.position(600, 650);
   button.mousePressed(achsentauschen);
-
 }
 
 function draw() {
@@ -36,7 +36,7 @@ function draw() {
     background(255);
   }
 
-  var d, x, y, w, h;
+
 
   fill('#9dc79d');
   // stroke(255);
@@ -83,11 +83,14 @@ function draw() {
     noStroke();
     pop();                     // <- reset the drawing context
   }
+
+  // Make a call to the custom function achsentauschen()
+  achsentauschen()
+
 }
 
-  function achsentauschen() {
-    var val = random(255);
-    background(val);
+function achsentauschen() {
+
   }
 
 

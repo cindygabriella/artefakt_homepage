@@ -33,9 +33,11 @@ p {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   font-family: Helvetica;
-
 }
 
+.text {
+  padding-right: 1100px;
+}
 
 .header {
   font-family: Helvetica;
