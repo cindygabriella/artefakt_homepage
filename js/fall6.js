@@ -1,3 +1,5 @@
+var fall6 = function (s) {
+
 var data = [];
 var ready = false;
 
@@ -7,16 +9,16 @@ var rScale = d3.scaleLinear();
 var one;
 var hover = false;
 
-function setup() {
-  createCanvas(1700, 600);
-  textSize(11);
+  s.setup = function() {
+  s.createCanvas(1700, 700);
+  s.textSize(13);
   //noLoop();
-  pixelDensity(8);
-  uxNoStroke();
+  s.pixelDensity(8);
+  //uxNoStroke();
 
   projection = d3.geoMercator() //Projektionsart, Auflistung von Projektionen:https://github.com/d3/d3-geo#projections
   .center([16.62878166, 9.995240903]) //Kartenmittelpunkt
-  .translate([width / 2, height / 2]) //Screen Position des Kartenmittelpunktes
+  .translate([s.width / 2, s.height / 2]) //Screen Position des Kartenmittelpunktes
   .scale(160);
 
   d3.csv("csv/waste.csv", function (d) {
@@ -30,53 +32,55 @@ function setup() {
   }).then(function (csv) {
     data = csv;
     ready = true;
-    redraw();
+    s.redraw();
   });
 }
 
-function draw() {
+s.draw = function()  {
   if (!ready) {
-    background(255, 0, 0);
-    noStroke();
+    s.background(255, 0, 0);
+    s.noStroke();
     return;
   } else {
-    background(255);
+    s.background(255);
   }
+
+  var wasteMin = d3.min(data, function(d){
+  return d.waste;
+  });
 
   var wasteMax = d3.max(data, function(d){
   return d.waste;
   });
 
-  rScale.domain([0, wasteMax]).range([1, 100]);
-
-  //fill('#9dc79d');
-  stroke(0,0,0);
+  rScale.domain([wasteMin, wasteMax]).range([1, 300]);
 
   for (var i = 0; i < data.length; i++) {
   var d = data[i];
   var lon = data[i].long;
   var lat = data[i].lat;
   var pos = projection([lon, lat]);
-  var rot = map(d.waste, 0, 300, 255, 0);
-  fill(255, rot, rot);
-  noStroke();
+  s.noStroke();
 
   if(d.waste < 0.2){
   var r = rScale(d.waste);
-  ellipse(pos[0], pos[1], r, r);
+  s.ellipse(pos[0], pos[1], r, r);
+  s.fill(85,107,47, 100);
   }
 
   if(d.waste > 0.2){
   var r = rScale(d.waste);
-  ellipse(pos[0], pos[1], r, r);
+  s.ellipse(pos[0], pos[1], r, r);
+  s.fill(85,107,47, 30);
   }
 
-  text(d.Entity, pos[0], pos[1]);
+  //text(d.Entity, pos[0], pos[1]-100);
+
 
 }
 
     one = uxRect(100, 100, 100, 100);
-    one.uxEvent('hover', trigger);
+    one.uxEvent('hover', s.trigger);
 
 
     if (hover) {
@@ -85,20 +89,20 @@ function draw() {
       var lon = data[i].long;
       var lat = data[i].lat;
       var pos = projection([lon, lat]);
-      var rot = map(d.waste, 0, 300, 255, 0);
+      //var rot = map(d.waste, 0, 300, 255, 0);
 
       if(d.waste < 0.2){
       var r = rScale(d.waste);
-      fill(255,0,0, 200);
+      s.fill(255,0,0, 200);
       //stroke("black");
-      ellipse(pos[0], pos[1], r, r);
+      s.ellipse(pos[0], pos[1], r, r);
       }
 
       if(d.waste > 0.2){
       var r = rScale(d.waste);
-      fill(255,0,0, 80);
+      s.fill(255,0,0, 80);
           //stroke("black");
-      ellipse(pos[0], pos[1], r, r);
+      s.ellipse(pos[0], pos[1], r, r);
       }
     }
     one.uxFill = '#79c65d';
@@ -109,20 +113,20 @@ function draw() {
       var lon = data[i].long;
       var lat = data[i].lat;
       var pos = projection([lon, lat]);
-      var rot = map(d.waste, 0, 300, 255, 0);
+      //var rot = map(d.waste, 0, 300, 255, 0);
 
       if(d.waste < 0.2){
       var r = rScale(d.waste);
-      fill(85,107,47, 200);
+      s.fill(85,107,47, 100);
       //stroke("black");
-      ellipse(pos[0], pos[1], r, r);
+      s.ellipse(pos[0], pos[1], r, r);
       }
 
       if(d.waste > 0.2){
       var r = rScale(d.waste);
-      fill(85,107,47, 80);
+      s.fill(85,107,47, 30);
       //stroke("black");
-      ellipse(pos[0], pos[1], r, r);
+      s.ellipse(pos[0], pos[1], r, r);
       }
     }
      one.uxFill = '#C65D5D';
@@ -130,6 +134,10 @@ function draw() {
 
 }
 
-function trigger() {
-  hover = true;
+s.trigger = function() {
+  s.hover = true;
 }
+
+}
+
+new p5(fall6,'grafik6');

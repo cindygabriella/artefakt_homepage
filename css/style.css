@@ -37,6 +37,8 @@ p {
 
 .text {
   padding-right: 1100px;
+  margin-left: 30px;
+  font-size: 14px;
 }
 
 .header {

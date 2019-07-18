@@ -9,7 +9,7 @@ var sketch1 = function (s) {
 
     s.createCanvas(1700, 400);
     s.textSize(11);
-    slider = s.createSlider(1951, 2015, 1951);
+    slider = s.createSlider(1951, 2015, 2000);
     //slider.position(110, 600);
     slider.position(100, 100);
 
