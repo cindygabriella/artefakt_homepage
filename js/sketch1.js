@@ -7,9 +7,9 @@ var sketch1 = function (s) {
 
   s.setup = function() {
 
-    s.createCanvas(1700, 400);
+    s.createCanvas(1700, 500);
     s.textSize(11);
-    slider = s.createSlider(1951, 2015, 2000);
+    slider = s.createSlider(400000000, 700000000, 700000000);
     //slider.position(110, 600);
     slider.position(100, 100);
 
@@ -80,11 +80,11 @@ var sketch1 = function (s) {
 
       //Jahr auf die x-Achse mappen
       //nach width-w mappen damit die breite des letzten balkens noch im canvas platz hat
-      var x = s.map(d.Year, yearMin, val, 0, s.width - w);
+      var x = s.map(d.Year, yearMin, yearMax, 0, s.width - w - 60);
 
       //y = (height / d.year) + 10;
       //Globalplasticsproduction auf die y-Achse Mappen
-      var y = s.map(d.Globalplasticsproduction, plasticsMin, plasticsMax, 0, 370);
+      var y = s.map(d.Globalplasticsproduction, plasticsMin, val, 0, 470);
 
       s.push();                    // <- push a drawing context
       // translate(x, y);        // <- move to position
@@ -94,7 +94,9 @@ var sketch1 = function (s) {
       s.rect(x, s.height - y, w, y);
 
       s.text(d.Year, x, s.height - y - 10);  // <- draw the label
-      s.text(slider.value(), 0, 190);
+      s.text("Skala der Y-Achse: 2000000 - " + slider.value(), 40, 160);
+      s.text(slider.value(), 1650, 10)
+      s.text("2000000", 1650, 495)
       s.noStroke();
       s.pop();                     // <- reset the drawing context
     }
