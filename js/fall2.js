@@ -73,18 +73,18 @@ s.setup = function() {
     for (var i = 0; i < data.length; i++) {
     var d = data[i];
 
-    var x = s.map(d.plastic, plasticMin, plasticMax, 0, 1300);
+    var x = s.map(d.plastic, plasticMin, plasticMax, 0, 1100);
 
    //Mismanagedplasticwaste auf die y-Achse Mappen
     var y = s.map(d.Year, yearMin, yearMax, 0, 700);
 
      //Breite des Balkens
-    var h = 15;
+    var h = 20;
 
     s.push();                    // <- push a drawing context
     // translate(x, y);        // <- move to position
 
-    s.rect(y, s.width-x, y, h);
+    s.rect(y, s.height-x, y, h);
 
     s.text(d.plastic, y, s.width-x-10);
     //s.text(d.Year, x,s.height-y-30);
@@ -100,10 +100,10 @@ s.setup = function() {
     var y = s.map(d.plastic, plasticMin, plasticMax, 0, 700);
 
    //Mismanagedplasticwaste auf die y-Achse Mappen
-    var x = s.map(d.Year, yearMin, yearMax, 0, 1300-w);
+    var x = s.map(d.Year, yearMin, yearMax, 0, 1100-w);
 
      //Breite des Balkens
-    var w = 15;
+    var w = 20;
     s.push();                    // <- push a drawing context
     // translate(x, y);        // <- move to position
 
