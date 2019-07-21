@@ -1,4 +1,4 @@
-var sketch2 = function (s) {
+var sketch2_test = function (s) {
 
 var data = [];
 var ready = false;
@@ -24,7 +24,7 @@ s.setup = function() {
 
   // test button - Achsen tauschen
   button = s.createButton('Achsen tauschen');
-  button.position(100, 1400);
+  button.position(100, 2200);
   button.mousePressed(achsentauschen);
 }
 
@@ -68,11 +68,9 @@ s.setup = function() {
 
   var yearCount = yearMax - yearMin;
 
-  if (s.mouseIsPressed) {
     // "falsch"
     for (var i = 0; i < data.length; i++) {
     var d = data[i];
-
 
 
    //Jahre auf die y-Achse Mappen
@@ -80,13 +78,15 @@ s.setup = function() {
 
     var x = s.map(d.plastic, plasticMin, plasticMax, 0, 1100);
 
+   // var x = s.map(d.Year, yearMin, yearMax, 0, s.width - w - 60);
+
      //Breite des Balkens
     var h = 20;
 
     s.push();                    // <- push a drawing context
     // translate(x, y);        // <- move to position
 
-    s.rect(y, s.height-x, x, h);
+    s.rect(0-y, s.height-x, x, h);
 
     s.text(d.plastic, y, s.height-x-10);
     s.text(d.Year, y, s.height-x-20);
@@ -95,35 +95,10 @@ s.setup = function() {
     s.pop();                     // <- reset the drawing context
   }
 
-  } else {
-    // "richtig"
-    for (var i = 0; i < data.length; i++) {
-    var d = data[i];
-
-    var y = s.map(d.plastic, plasticMin, plasticMax, 0, 700);
-
-   //Mismanagedplasticwaste auf die y-Achse Mappen
-    var x = s.map(d.Year, yearMin, yearMax, 0, 1100-w);
-
-     //Breite des Balkens
-    var w = 20;
-    s.push();                    // <- push a drawing context
-    // translate(x, y);        // <- move to position
-
-    s.rect(x, s.height-y, w, y);
-
-    // text(d.Year, x,height-y-10);  // <- draw the label
-    s.text(d.plastic, x,s.height-y-10);
-    s.text(d.Year, x,s.height-y-30);
-    s.noStroke();
-    s.pop();                     // <- reset the drawing context
-  }
-  }
-
   // Make a call to the custom function achsentauschen()
   achsentauschen()
 
-}
+};
 
 function achsentauschen() {
 
@@ -136,4 +111,4 @@ function achsentauschen() {
 
 }
 
-new p5(sketch2,'grafik2');
+new p5(sketch2_test,'grafik2_test');
