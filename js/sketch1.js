@@ -9,6 +9,7 @@ var sketch1 = function (s) {
 
     s.createCanvas(1700, 500);
     s.textSize(11);
+    s.pixelDensity(6);
     slider = s.createSlider(400000000, 700000000, 700000000);
     //slider.position(110, 600);
     slider.position(100, 100);
@@ -95,7 +96,7 @@ var sketch1 = function (s) {
 
       s.text(d.Year, x, s.height - y - 10);  // <- draw the label
       s.text("Skala der Y-Achse: 2000000 - " + slider.value(), 40, 160);
-      s.text(slider.value(), 1650, 10)
+      s.text(slider.value(), 1640, 10)
       s.text("2000000", 1650, 495)
       s.noStroke();
       s.pop();                     // <- reset the drawing context
