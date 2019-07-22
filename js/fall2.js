@@ -46,6 +46,17 @@ s.setup = function() {
 
   //Mismanagedplasticwaste als y-Achse, Entity als X-Achse.
   // Minimum Mismanagedplasticwaste finden
+
+
+  // Make a call to the custom function achsentauschen()
+  s.achsentauschen()
+
+}
+
+s.achsentauschen = function () {
+
+  s.noStroke();
+
   var plasticMin = d3.min(data, function (d) {
     return d.plastic;
   });
@@ -72,8 +83,6 @@ s.setup = function() {
     // "falsch"
     for (var i = 0; i < data.length; i++) {
     var d = data[i];
-
-
 
    //Jahre auf die y-Achse Mappen
     var y = s.map(d.Year, yearMin, yearMax, 0, 700);
@@ -119,15 +128,7 @@ s.setup = function() {
     s.pop();                     // <- reset the drawing context
   }
   }
-
-  // Make a call to the custom function achsentauschen()
-  achsentauschen()
-
-}
-
-function achsentauschen() {
-
-  }
+};
 
 
 // function trigger() {

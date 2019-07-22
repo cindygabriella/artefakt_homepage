@@ -74,22 +74,22 @@ s.setup = function() {
 
 
    //Jahre auf die y-Achse Mappen
-    var y = s.map(d.Year, yearMin, yearMax, 0, 700);
+    var y = s.map(d.Year, yearMin, yearMax, 0, s.height-700);
 
     var x = s.map(d.plastic, plasticMin, plasticMax, 0, 1100);
 
    // var x = s.map(d.Year, yearMin, yearMax, 0, s.width - w - 60);
 
      //Breite des Balkens
-    var h = 20;
+    var h = 15;
 
     s.push();                    // <- push a drawing context
     // translate(x, y);        // <- move to position
 
     s.rect(0-y, s.height-x, x, h);
 
-    s.text(d.plastic, y, s.height-x-10);
-    s.text(d.Year, y, s.height-x-20);
+    s.text(d.plastic, y, x-s.height-10);
+    s.text(d.Year, y, x-s.height-20);
     //s.text(d.Year, x,s.height-y-30);
     s.noStroke();
     s.pop();                     // <- reset the drawing context

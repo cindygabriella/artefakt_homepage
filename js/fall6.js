@@ -8,10 +8,16 @@ var rScale = d3.scaleLinear();
 
 var one;
 var hover = false;
+let img;
+
+// s.preload = function(){
+//   img = s.loadImage('images/world.png');
+// }
 
   s.setup = function() {
   s.createCanvas(1700, 700);
   s.textSize(13);
+
   //noLoop();
   s.pixelDensity(8);
   //uxNoStroke();
@@ -43,6 +49,8 @@ s.draw = function()  {
     return;
   } else {
     s.background(255);
+    // s.image(img, 440, 140, 780, 420);
+
   }
 
   var wasteMin = d3.min(data, function(d){
@@ -79,7 +87,7 @@ s.draw = function()  {
 
 }
 
-    one = uxRect(100, 100, 100, 100);
+    one = s.uxRect(100, 100, 100, 100);
     one.uxEvent('hover', s.trigger);
 
 
