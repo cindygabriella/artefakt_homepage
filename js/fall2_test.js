@@ -65,17 +65,26 @@ var sketch2_test = function (s) {
     for (var i = 0; i < data.length; i++) {
       var d = data[i];
 
-      //Jahre auf die y-Achse Mappen
-      //var y = s.map(d.Year, yearMin, yearMax, 0, s.height - 700);
-      var y = s.map(d.Year, yearMin, yearMax, s.height, 0);
-      var x = s.map(d.plastic, plasticMin, plasticMax, 0, 750);
+      //Höhe des Balkens
+      //var h = 15;
+      var barHeight = 15;
 
-      //Breite des Balkens
-      var h = 15;
+      //yearMin wird auf s.height gemappt
+      //yearMax wird auf 0 gemappt
+      var y = s.map(d.Year, yearMin, yearMax, s.height-barHeight, 0);
+
+      //x ist immer null beim horizontal bar chart
+      var x = 0;
+
+      //ich nenne das mal barWidth damit es klar ist was gemeint ist
+      var barWidth = s.map(d.plastic, plasticMin, plasticMax, 0, 750);
 
       s.push();                    // <- push a drawing context
-      s.rect(0 - y, s.height - x, x, h);
-      s.text(d.Year, x, y);
+      //s.rect(0 - y, s.height - x, x, h);
+      s.rect(x,y, barWidth, barHeight);
+      s.textAlign(s.LEFT,s.CENTER);
+      s.fill(0);
+      s.text(d.Year, x, y+0.5*barHeight);
       s.noStroke();
       s.pop();                     // <- reset the drawing context
     }
