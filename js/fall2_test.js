@@ -20,7 +20,6 @@ var sketch2_test = function (s) {
 
     s.createCanvas(1400, 800);
     s.textSize(11);
-    //pixelDensity(8);
 
     // test button - Achsen tauschen
     button = s.createButton('Achsen tauschen');
@@ -38,12 +37,9 @@ var sketch2_test = function (s) {
     }
 
     s.fill('#9dc79d');
-    // stroke(0,0,0);
-    // strokeWeight(0.2);
-
 
     //Mismanagedplasticwaste als y-Achse, Entity als X-Achse.
-    // Minimum Mismanagedplasticwaste finden
+    //Minimum Mismanagedplasticwaste finden
     var plasticMin = d3.min(data, function (d) {
       return d.plastic;
     });
@@ -70,24 +66,16 @@ var sketch2_test = function (s) {
       var d = data[i];
 
       //Jahre auf die y-Achse Mappen
-     // var y = s.map(d.Year, yearMin, yearMax, 0, s.height - 700);
-      var y = s.map(d.Year, yearMin, yearMax, s.height ,0 );
+      //var y = s.map(d.Year, yearMin, yearMax, 0, s.height - 700);
+      var y = s.map(d.Year, yearMin, yearMax, s.height, 0);
       var x = s.map(d.plastic, plasticMin, plasticMax, 0, 750);
-
-      // var x = s.map(d.Year, yearMin, yearMax, 0, s.width - w - 60);
 
       //Breite des Balkens
       var h = 15;
 
       s.push();                    // <- push a drawing context
-      // translate(x, y);        // <- move to position
-
       s.rect(0 - y, s.height - x, x, h);
-
-      //s.text(d.plastic, y, x-s.height-10);
-      // s.text(d.Year, s.height - y, x);
-      s.text(d.Year,x, y);
-      //s.text(d.Year, x,s.height-y-30);
+      s.text(d.Year, x, y);
       s.noStroke();
       s.pop();                     // <- reset the drawing context
     }
@@ -100,11 +88,6 @@ var sketch2_test = function (s) {
   function achsentauschen() {
 
   }
-
-
-  // function trigger() {
-  //   console.log('uxRect just got clicked!');
-  // }
 
 }
 
