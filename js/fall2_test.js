@@ -9,7 +9,7 @@ s.setup = function() {
   d3.csv("csv/recycling.csv", function (d) {
     return {
       Year: +d.Year,
-      ﻿Entity: d.﻿Entity,
+      Entity: d.Entity,
       plastic: +d.plastic,
     };
   }).then(function (csv) {
