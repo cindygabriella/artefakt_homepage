@@ -5,8 +5,6 @@ var ready = false;
 
 var button;
 
-var buttonIsPressed = false;
-
 s.setup = function() {
   d3.csv("csv/recycling.csv", function (d) {
     return {
@@ -22,7 +20,7 @@ s.setup = function() {
 
   s.createCanvas(1400, 800);
   s.textSize(11);
-  //pixelDensity(8);
+  s.pixelDensity(8);
 
   // test button - Achsen tauschen
   button = s.createButton('Achsen tauschen');
@@ -31,13 +29,13 @@ s.setup = function() {
 }
 
   s.draw = function() {
-  if (!ready) {
-    s.background(255, 0, 0);
-    s.noStroke();
-    return;
-  } else {
-    s.background(255);
-  }
+  // if (!ready) {
+  //   s.background(255, 0, 0);
+  //   s.noStroke();
+  //   return;
+  // } else {
+  //   s.background(255);
+  // }
 
   s.fill('#9dc79d');
   // stroke(0,0,0);
@@ -69,7 +67,7 @@ s.setup = function() {
 
         // Make a call to the custom function achsentauschen()
 
-    if (s.mouseIsPressed){
+
       for (var i = 0; i < data.length; i++) {
         var d = data[i];
 
@@ -96,9 +94,9 @@ s.setup = function() {
         s.noStroke();
         s.pop();                     // <- reset the drawing context
       }
-    } else {
-      for (var i = 0; i < data.length; i++) {
-      var d = data[i];
+
+      for (var j = 0; j < data.length; j++) {
+      var d = data[j];
 
       var y = s.map(d.plastic, plasticMin, plasticMax, 0, 750);
 
@@ -119,8 +117,15 @@ s.setup = function() {
       s.noStroke();
       s.pop();                     // <- reset the drawing context
     }
-    }
-  };
+  }
+
+  s.achsentauschen = function() {
+    s.background("black");
+  }
+
+
+
+
 }
 
 new p5(sketch2,'grafik2');
