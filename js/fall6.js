@@ -6,8 +6,6 @@ var ready = false;
 var projection = null;
 var rScale = d3.scaleLinear();
 
-var one;
-var hover = false;
 let img;
 
 // s.preload = function(){
@@ -82,68 +80,15 @@ s.draw = function()  {
   s.fill(85,107,47, 30);
   }
 
+  if (s.mouseX > pos[0] && pos[1] || s.mouseY > pos[0] && pos[1]) {
+    s.fill(255,0,0, 50);
+  }
+
   //text(d.Entity, pos[0], pos[1]-100);
 
-
 }
 
-    one = s.uxRect(100, 100, 100, 100);
-    one.uxEvent('hover', s.trigger);
 
-
-    if (hover) {
-      for (var i = 0; i < data.length; i++) {
-      var d = data[i];
-      var lon = data[i].long;
-      var lat = data[i].lat;
-      var pos = projection([lon, lat]);
-      //var rot = map(d.waste, 0, 300, 255, 0);
-
-      if(d.waste < 0.2){
-      var r = rScale(d.waste);
-      s.fill(255,0,0, 200);
-      //stroke("black");
-      s.ellipse(pos[0], pos[1], r, r);
-      }
-
-      if(d.waste > 0.2){
-      var r = rScale(d.waste);
-      s.fill(255,0,0, 80);
-          //stroke("black");
-      s.ellipse(pos[0], pos[1], r, r);
-      }
-    }
-    one.uxFill = '#79c65d';
-     hover = false;
-    } else {
-      for (var i = 0; i < data.length; i++) {
-      var d = data[i];
-      var lon = data[i].long;
-      var lat = data[i].lat;
-      var pos = projection([lon, lat]);
-      //var rot = map(d.waste, 0, 300, 255, 0);
-
-      if(d.waste < 0.2){
-      var r = rScale(d.waste);
-      s.fill(85,107,47, 100);
-      //stroke("black");
-      s.ellipse(pos[0], pos[1], r, r);
-      }
-
-      if(d.waste > 0.2){
-      var r = rScale(d.waste);
-      s.fill(85,107,47, 30);
-      //stroke("black");
-      s.ellipse(pos[0], pos[1], r, r);
-      }
-    }
-     one.uxFill = '#C65D5D';
-      }
-
-}
-
-s.trigger = function() {
-  s.hover = true;
 }
 
 }
