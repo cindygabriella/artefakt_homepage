@@ -47,16 +47,7 @@ var fall3 = function (s) {
     // button3.position(100, 3260);
     // button3.mousePressed();
 
-    // textures.js
-    var svg = d3.select('#vis').append("svg");
-
-     var t = textures.paths().d("waves").thicker().stroke("#D8E5D8");
-
-      svg.call(t);
-
-      svg.append("rect").style("fill", t.url());
-
-  }
+}
 
 
 
@@ -69,8 +60,13 @@ var fall3 = function (s) {
     s.background(255);
   }
 
+  // textures.js
+    var svg = d3.select("#grafik");
+    var t = textures.paths().d("waves").thicker().stroke("#D8E5D8");
+    svg.call(t);
 
-
+    var kreis1 = d3.select("#kreis1");
+    kreis1.style("fill", t.url());
 
   var maxPop = d3.max(data,function(d){
   return d.plastictonnes;
@@ -86,7 +82,6 @@ var fall3 = function (s) {
   var river = d3.set(data,function(d){
       return d.rivers;
     }).values();
-
 
 
     var barHeight = 30;
@@ -113,6 +108,14 @@ var fall3 = function (s) {
     s.text(d.rivers,barWidth+10,y+0.5*barHeight);
     s.text(maxPop, 1300, 730);
     s.text(minPop, 0, 730);
+
+        // test textures.js
+        // var test = d3.select("#defaultCanvas2");
+        // var t = textures.paths().d("waves").thicker().stroke("#D8E5D8");
+        // test.call(t);
+        //
+        // var rect = d3.select(rect);
+        // rect.style("fill", t.url());
     }
 }
 
