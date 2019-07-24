@@ -5,6 +5,8 @@ var ready = false;
 
 var button;
 
+var buttonIsPressed = false;
+
 s.setup = function() {
   d3.csv("csv/recycling.csv", function (d) {
     return {
@@ -42,10 +44,6 @@ s.setup = function() {
   // strokeWeight(0.2);
 
   s.noStroke();
-
-}
-
-    s.achsentauschen = function () {
 
         var plasticMin = d3.min(data, function (d) {
           return d.plastic;

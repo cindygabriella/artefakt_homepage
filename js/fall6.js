@@ -80,7 +80,7 @@ s.draw = function()  {
   s.fill(85,107,47, 30);
   }
 
-  if (s.mouseX > pos[0] && pos[1] || s.mouseY > pos[0] && pos[1]) {
+  if (s.mouseX > pos[0] && pos[1]) {
     s.fill(255,0,0, 50);
   }
 
