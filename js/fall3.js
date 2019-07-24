@@ -32,7 +32,7 @@ var fall3 = function (s) {
     });
 
     s.createCanvas(1400, 800);
-    s.textSize(11);
+    s.textSize(12);
     pixelDensity(8);
 
     // button = s.createButton('Alle Länder');
@@ -62,7 +62,7 @@ var fall3 = function (s) {
   }
 
 
-  s.fill('#9dc79d');
+
 
   var maxPop = d3.max(data,function(d){
   return d.plastictonnes;
@@ -89,10 +89,13 @@ var fall3 = function (s) {
     var y = yScale(d.rivers);
 
     //var y = s.map(d.Code, codeMin, codeMax, 0, 600);
-
+    s.fill('#D8E5D8');
     s.noStroke();
     s.rect(0,y,barWidth,barHeight);
 
+
+    s.fill('black');
+    s.noStroke();
     s.textAlign(s.LEFT,s.CENTER);
     s.text(d.rivers,barWidth+10,y+0.5*barHeight);
     s.text(maxPop, 1300, 730);
