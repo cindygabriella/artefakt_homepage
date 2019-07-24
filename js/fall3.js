@@ -33,7 +33,7 @@ var fall3 = function (s) {
 
     s.createCanvas(1400, 800);
     s.textSize(12);
-    pixelDensity(8);
+    //s.pixelDensity(8);
 
     // button = s.createButton('Alle Länder');
     // button.position(100, 3200);
@@ -47,6 +47,14 @@ var fall3 = function (s) {
     // button3.position(100, 3260);
     // button3.mousePressed();
 
+    // textures.js
+    var svg = d3.select('#vis').append("svg");
+
+     var t = textures.paths().d("waves").thicker().stroke("#D8E5D8");
+
+      svg.call(t);
+
+      svg.append("rect").style("fill", t.url());
 
   }
 
@@ -90,6 +98,7 @@ var fall3 = function (s) {
 
     //var y = s.map(d.Code, codeMin, codeMax, 0, 600);
     s.fill('#D8E5D8');
+
     s.noStroke();
     s.rect(0,y,barWidth,barHeight);
 
