@@ -2,16 +2,22 @@ var fall3 = function (s) {
 
   var data = [];
   var ready = false;
-  var button;
-  var button2;
-  var button3;
+  // var button;
+  // var button2;
+  // var button3;
+
+  var yScale = d3.scalePoint();
+  var xScale = d3.scaleLinear();
+
+  var chartWidth = 1300;
+  var chartHeight = 700;
 
   s.setup = function() {
     d3.csv("csv/rivers.csv", function (d) {
       return {
         Code: +d.Code,
-        Entity: d.Entity,
-        Plastictonnes: +d.Plastictonnes,
+        rivers: d.rivers,
+        plastictonnes: +d.plastictonnes,
         Country1: d.Country1,
         Country2: d.Country2,
         Country3: d.Country3,
@@ -25,21 +31,21 @@ var fall3 = function (s) {
       s.redraw();
     });
 
-    s.createCanvas(1300, 800);
+    s.createCanvas(1400, 800);
     s.textSize(11);
-    //pixelDensity(8);
+    pixelDensity(8);
 
-    button = s.createButton('Alle Länder');
-    button.position(100, 3200);
-    button.mousePressed();
-
-    button2 = s.createButton('Brazil');
-    button2.position(100, 3230);
-    button2.mousePressed();
-
-    button3 = s.createButton('China');
-    button3.position(100, 3260);
-    button3.mousePressed();
+    // button = s.createButton('Alle Länder');
+    // button.position(100, 3200);
+    // button.mousePressed();
+    //
+    // button2 = s.createButton('Brazil');
+    // button2.position(100, 3230);
+    // button2.mousePressed();
+    //
+    // button3 = s.createButton('China');
+    // button3.position(100, 3260);
+    // button3.mousePressed();
 
 
   }
@@ -55,56 +61,44 @@ var fall3 = function (s) {
     s.background(255);
   }
 
-  var d, x, y, w, h, land;
 
-  s.fill('black');
+  s.fill('#9dc79d');
 
-  var tonnesMin = d3.min(data, function (d) {
-    return d.Plastictonnes;
-  });
+  var maxPop = d3.max(data,function(d){
+  return d.plastictonnes;
+    });
+    xScale.domain([0,maxPop])
+      .range([0,chartWidth]);
 
-    //Maximum Mismanagedplasticwaste finden
-  var tonnesMax = d3.max(data, function (d) {
-    return d.Plastictonnes;
-  })
+      var minPop = d3.min(data,function(d){
+      return d.plastictonnes;
+        });
 
-  var tonnesCount = tonnesMax - tonnesMin;
-  // 321100
+  var river = d3.set(data,function(d){
+      return d.rivers;
+    }).values();
 
-  var codeMin = d3.min(data, function (d) {
-    return d.Code;
-  });
+    var barHeight = 30;
 
-  var codeMax = d3.max(data, function (d) {
-    return d.Code;
-  });
-
+    yScale.domain(river)
+   .range([0,chartHeight-barHeight]);
 
   for (var i = 0; i < data.length; i++){
     var d = data[i];
-    var w = s.width / tonnesCount;
-    var x = s.map(d.Plastictonnes, tonnesMin, tonnesMax, 0, s.width - w - 60);
-    var y = [d.﻿Entity];
+    var barWidth = xScale(d.plastictonnes);
+    var y = yScale(d.rivers);
+
     //var y = s.map(d.Code, codeMin, codeMax, 0, 600);
-    s.push();
-    s.rect(x, s.height - y, w, y);
-    s.pop();
+
+    s.noStroke();
+    s.rect(0,y,barWidth,barHeight);
+
+    s.textAlign(s.LEFT,s.CENTER);
+    s.text(d.rivers,barWidth+10,y+0.5*barHeight);
+    s.text(maxPop, 1300, 730);
+    s.text(minPop, 0, 730);
     }
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
 
 }
 

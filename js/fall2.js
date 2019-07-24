@@ -25,7 +25,7 @@ s.setup = function() {
   // test button - Achsen tauschen
   button = s.createButton('Achsen tauschen');
   button.position(100, 1400);
-  button.mousePressed(achsentauschen);
+  button.mousePressed(s.achsentauschen);
 }
 
   s.draw = function() {
@@ -37,104 +37,92 @@ s.setup = function() {
     s.background(255);
   }
 
-
-
   s.fill('#9dc79d');
   // stroke(0,0,0);
   // strokeWeight(0.2);
 
-
-  //Mismanagedplasticwaste als y-Achse, Entity als X-Achse.
-  // Minimum Mismanagedplasticwaste finden
-
-
-  // Make a call to the custom function achsentauschen()
-  s.achsentauschen()
+  s.noStroke();
 
 }
 
-s.achsentauschen = function () {
+    s.achsentauschen = function () {
 
-  s.noStroke();
+        var plasticMin = d3.min(data, function (d) {
+          return d.plastic;
+        });
 
-  var plasticMin = d3.min(data, function (d) {
-    return d.plastic;
-  });
+          //Maximum Mismanagedplasticwaste finden
+        var plasticMax = d3.max(data, function (d) {
+          return d.plastic;
+        })
 
-    //Maximum Mismanagedplasticwaste finden
-  var plasticMax = d3.max(data, function (d) {
-    return d.plastic;
-  })
-
-  var plasticCount = plasticMax - plasticMin;
+        var plasticCount = plasticMax - plasticMin;
 
 
-  var yearMin = d3.min(data, function (d) {
-     return d.Year;
-  });
+        var yearMin = d3.min(data, function (d) {
+           return d.Year;
+        });
 
-  var yearMax = d3.max(data, function (d) {
-     return d.Year;
-  });
+        var yearMax = d3.max(data, function (d) {
+           return d.Year;
+        });
 
-  var yearCount = yearMax - yearMin;
+        var yearCount = yearMax - yearMin;
 
-  if (s.mouseIsPressed) {
-    // "falsch"
-    for (var i = 0; i < data.length; i++) {
-    var d = data[i];
+        // Make a call to the custom function achsentauschen()
 
-   //Jahre auf die y-Achse Mappen
-    var y = s.map(d.Year, yearMin, yearMax, 0, 700);
+    if (s.mouseIsPressed){
+      for (var i = 0; i < data.length; i++) {
+        var d = data[i];
 
-    var x = s.map(d.plastic, plasticMin, plasticMax, 0, 1100);
+        //Höhe des Balkens
+        //var h = 15;
+        var barHeight = 15;
 
-     //Breite des Balkens
-    var h = 20;
+        //yearMin wird auf s.height gemappt
+        //yearMax wird auf 0 gemappt
+        var y = s.map(d.Year, yearMin, yearMax, s.height-barHeight, 0);
 
-    s.push();                    // <- push a drawing context
-    // translate(x, y);        // <- move to position
+        //x ist immer null beim horizontal bar chart
+        var x = 60;
 
-    s.rect(y, s.height-x, x, h);
+        //ich nenne das mal barWidth damit es klar ist was gemeint ist
+        var barWidth = s.map(d.plastic, plasticMin, plasticMax, 0, 750);
 
-    s.text(d.plastic, y, s.height-x-10);
-    s.text(d.Year, y, s.height-x-20);
-    //s.text(d.Year, x,s.height-y-30);
-    s.noStroke();
-    s.pop();                     // <- reset the drawing context
-  }
+        s.push();                    // <- push a drawing context
+        //s.rect(0 - y, s.height - x, x, h);
+        s.rect(x,y, barWidth, barHeight);
+        s.textAlign(s.LEFT,s.CENTER);
+        s.text(d.Year, x-60, y+0.5*barHeight);
+        s.text(d.plastic, x-30, y+0.5*barHeight);
+        s.noStroke();
+        s.pop();                     // <- reset the drawing context
+      }
+    } else {
+      for (var i = 0; i < data.length; i++) {
+      var d = data[i];
 
-  } else {
-    // "richtig"
-    for (var i = 0; i < data.length; i++) {
-    var d = data[i];
+      var y = s.map(d.plastic, plasticMin, plasticMax, 0, 750);
 
-    var y = s.map(d.plastic, plasticMin, plasticMax, 0, 700);
+     //Mismanagedplasticwaste auf die y-Achse Mappen
+      var x = s.map(d.Year, yearMin, yearMax, 0, 1000-w);
 
-   //Mismanagedplasticwaste auf die y-Achse Mappen
-    var x = s.map(d.Year, yearMin, yearMax, 0, 1100-w);
+       //Breite des Balkens
+      var w = 15;
+      s.push();                    // <- push a drawing context
+      // translate(x, y);        // <- move to position
 
-     //Breite des Balkens
-    var w = 20;
-    s.push();                    // <- push a drawing context
-    // translate(x, y);        // <- move to position
+      s.rect(x, s.height-y, w, y);
 
-    s.rect(x, s.height-y, w, y);
-
-    // text(d.Year, x,height-y-10);  // <- draw the label
-    s.text(d.plastic, x,s.height-y-10);
-    s.text(d.Year, x,s.height-y-30);
-    s.noStroke();
-    s.pop();                     // <- reset the drawing context
-  }
-  }
-};
-
-
-// function trigger() {
-//   console.log('uxRect just got clicked!');
-// }
-
+      // text(d.Year, x,height-y-10);  // <- draw the label
+      s.textAlign(s.CENTER);
+      s.text(d.plastic, x,s.height-y-10);
+      s.text(d.Year, x,s.height-y-30);
+      s.noStroke();
+      s.pop();                     // <- reset the drawing context
+    }
+    }
+  };
 }
 
 new p5(sketch2,'grafik2');

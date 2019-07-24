@@ -74,7 +74,7 @@ var sketch2_test = function (s) {
       var y = s.map(d.Year, yearMin, yearMax, s.height-barHeight, 0);
 
       //x ist immer null beim horizontal bar chart
-      var x = 0;
+      var x = 60;
 
       //ich nenne das mal barWidth damit es klar ist was gemeint ist
       var barWidth = s.map(d.plastic, plasticMin, plasticMax, 0, 750);
@@ -83,8 +83,8 @@ var sketch2_test = function (s) {
       //s.rect(0 - y, s.height - x, x, h);
       s.rect(x,y, barWidth, barHeight);
       s.textAlign(s.LEFT,s.CENTER);
-      s.fill(0);
-      s.text(d.Year, x, y+0.5*barHeight);
+      s.text(d.Year, x-60, y+0.5*barHeight);
+      s.text(d.plastic, x-30, y+0.5*barHeight);
       s.noStroke();
       s.pop();                     // <- reset the drawing context
     }
