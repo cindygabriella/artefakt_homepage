@@ -1,6 +1,10 @@
 var fall3 = function (s) {
 
   var data = [];
+
+  //variable die die gefilterten daten enthält
+  var dataSelection = [];
+
   var ready = false;
   var button;
   // var button2;
@@ -12,7 +16,7 @@ var fall3 = function (s) {
   var chartWidth = 1300;
   var chartHeight = 700;
 
-  s.setup = function() {
+  s.setup = function () {
     d3.csv("csv/rivers.csv", function (d) {
       return {
         Code: +d.Code,
@@ -27,6 +31,7 @@ var fall3 = function (s) {
       };
     }).then(function (csv) {
       data = csv;
+      dataSelection = data;
       ready = true;
       s.redraw();
     });
@@ -47,20 +52,20 @@ var fall3 = function (s) {
     // button3.position(100, 3260);
     // button3.mousePressed();
 
-}
-
-
-
-  s.draw = function() {
-  if (!ready) {
-    s.background(255, 0, 0);
-    s.noStroke();
-    return;
-  } else {
-    s.background(255);
   }
 
-  // textures.js
+
+
+  s.draw = function () {
+    if (!ready) {
+      s.background(255, 0, 0);
+      s.noStroke();
+      return;
+    } else {
+      s.background(255);
+    }
+
+    // textures.js
     var svg = d3.select("#grafik");
     var t = textures.paths().d("waves").thicker().stroke("#D8E5D8");
     svg.call(t);
@@ -68,18 +73,18 @@ var fall3 = function (s) {
     var kreis1 = d3.select("#kreis1");
     kreis1.style("fill", t.url());
 
-  var maxPop = d3.max(data,function(d){
-  return d.plastictonnes;
+    var maxPop = d3.max(data, function (d) {
+      return d.plastictonnes;
     });
 
-  xScale.domain([0,maxPop])
-      .range([0,chartWidth]);
+    xScale.domain([0, maxPop])
+      .range([0, chartWidth]);
 
-      var minPop = d3.min(data,function(d){
+    var minPop = d3.min(data, function (d) {
       return d.plastictonnes;
-        });
+    });
 
-  var river = d3.set(data,function(d){
+    var river = d3.set(data, function (d) {
       return d.rivers;
     }).values();
 
@@ -87,45 +92,49 @@ var fall3 = function (s) {
     var barHeight = 30;
 
     yScale.domain(river)
-   .range([0,chartHeight-barHeight]);
+      .range([0, chartHeight - barHeight]);
 
-  for (var i = 0; i < data.length; i++){
-    var d = data[i];
-    //data.filter(function(d){return d.rivers != "Brantas (Indonesia)"});
-    //var dataFilter = data.filter(function(d){return d.rivers != "Brantas (Indonesia)"});
-    var barWidth = xScale(d.plastictonnes);
-    var y = yScale(d.rivers);
+    for (var i = 0; i < dataSelection.length; i++) {
+      var d = dataSelection[i];
+      //data.filter(function(d){return d.rivers != "Brantas (Indonesia)"});
+      //var dataFilter = data.filter(function(d){return d.rivers != "Brantas (Indonesia)"});
+      var barWidth = xScale(d.plastictonnes);
+      var y = yScale(d.rivers);
 
-    s.fill('#D8E5D8');
+      s.fill('#D8E5D8');
 
-    s.noStroke();
-    s.rect(0,y,barWidth,barHeight);
+      s.noStroke();
+      s.rect(0, y, barWidth, barHeight);
 
 
-    s.fill('black');
-    s.noStroke();
-    s.textAlign(s.LEFT,s.CENTER);
-    s.text(d.rivers,barWidth+10,y+0.5*barHeight);
-    s.text(maxPop, 1300, 730);
-    s.text(minPop, 0, 730);
+      s.fill('black');
+      s.noStroke();
+      s.textAlign(s.LEFT, s.CENTER);
+      s.text(d.rivers, barWidth + 10, y + 0.5 * barHeight);
+      s.text(maxPop, 1300, 730);
+      s.text(minPop, 0, 730);
 
-        // test textures.js
-        // var test = d3.select("#defaultCanvas2");
-        // var t = textures.paths().d("waves").thicker().stroke("#D8E5D8");
-        // test.call(t);
-        //
-        // var rect = d3.select(rect);
-        // rect.style("fill", t.url());
+      // test textures.js
+      // var test = d3.select("#defaultCanvas2");
+      // var t = textures.paths().d("waves").thicker().stroke("#D8E5D8");
+      // test.call(t);
+      //
+      // var rect = d3.select(rect);
+      // rect.style("fill", t.url());
     }
-}
+  }
 
-  s.test = function() {
-    var dataFilter = data.filter(function(d){
-      return d.rivers!= "Brantas (Indonesia)"
+  s.test = function () {
+    // var dataFilter = data.filter(function(d){
+    //   return d.rivers!= "Brantas (Indonesia)"
+    //   s.redraw();
+    // });
+    dataSelection = data.filter(function (d) {
+      return d.rivers != "Brantas (Indonesia)"
       s.redraw();
     });
   }
 
 }
 
-new p5(fall3,'grafik3');
+new p5(fall3, 'grafik3');
