@@ -5,6 +5,11 @@ var ready = false;
 
 var button;
 
+var dataSelection = [];
+
+var i = [];
+var j = [];
+
 s.setup = function() {
   d3.csv("csv/recycling.csv", function (d) {
     return {
@@ -95,7 +100,7 @@ s.setup = function() {
         s.pop();                     // <- reset the drawing context
       }
 
-      for (var j = 0; j < data.length; j++) {
+      for (var j = 0; j < dataSelection.length; j++) {
       var d = data[j];
 
       var y = s.map(d.plastic, plasticMin, plasticMax, 0, 750);
@@ -120,7 +125,10 @@ s.setup = function() {
   }
 
   s.achsentauschen = function() {
-    s.background("black");
+    dataSelection = data.filter(function (i) {
+      return data[i];
+      s.redraw();
+    });
   }
 
 

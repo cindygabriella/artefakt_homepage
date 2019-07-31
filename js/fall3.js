@@ -16,6 +16,8 @@ var fall3 = function (s) {
   var chartWidth = 1300;
   var chartHeight = 700;
 
+  var china = ['Dong (China)', 'Hanjiang (China)', 'Huangpu (China)', 'Mekong (Thailand & Cambodia & Laos & China & Myanmar & Vietnam)', 'Xi (China)', 'Yangtze (China)', 'Zhujiang (China)'];
+
   s.setup = function () {
     d3.csv("csv/rivers.csv", function (d) {
       return {
@@ -65,14 +67,6 @@ var fall3 = function (s) {
       s.background(255);
     }
 
-    // textures.js
-    var svg = d3.select("#grafik");
-    var t = textures.paths().d("waves").thicker().stroke("#D8E5D8");
-    svg.call(t);
-
-    var kreis1 = d3.select("#kreis1");
-    kreis1.style("fill", t.url());
-
     var maxPop = d3.max(data, function (d) {
       return d.plastictonnes;
     });
@@ -114,23 +108,12 @@ var fall3 = function (s) {
       s.text(maxPop, 1300, 730);
       s.text(minPop, 0, 730);
 
-      // test textures.js
-      // var test = d3.select("#defaultCanvas2");
-      // var t = textures.paths().d("waves").thicker().stroke("#D8E5D8");
-      // test.call(t);
-      //
-      // var rect = d3.select(rect);
-      // rect.style("fill", t.url());
     }
   }
 
   s.test = function () {
-    // var dataFilter = data.filter(function(d){
-    //   return d.rivers!= "Brantas (Indonesia)"
-    //   s.redraw();
-    // });
     dataSelection = data.filter(function (d) {
-      return d.rivers != "Brantas (Indonesia)"
+      return d.rivers { return d.rivers !=  china }
       s.redraw();
     });
   }
