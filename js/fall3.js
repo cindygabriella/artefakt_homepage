@@ -7,16 +7,14 @@ var fall3 = function (s) {
 
   var ready = false;
   var button;
-  // var button2;
-  // var button3;
+  var button2;
+  var button3;
 
   var yScale = d3.scalePoint();
   var xScale = d3.scaleLinear();
 
   var chartWidth = 1300;
   var chartHeight = 700;
-
-  var china = ['Dong (China)', 'Hanjiang (China)', 'Huangpu (China)', 'Mekong (Thailand & Cambodia & Laos & China & Myanmar & Vietnam)', 'Xi (China)', 'Yangtze (China)', 'Zhujiang (China)'];
 
   s.setup = function () {
     d3.csv("csv/rivers.csv", function (d) {
@@ -42,17 +40,17 @@ var fall3 = function (s) {
     s.textSize(12);
     //s.pixelDensity(8);
 
-    button = s.createButton('Remove Brantas (Indonesia)');
-    button.position(50, 2200);
+    button = s.createButton('Remove Asia');
+    button.position(70, 2200);
     button.mousePressed(s.test);
-    //
-    // button2 = s.createButton('Brazil');
-    // button2.position(100, 3230);
-    // button2.mousePressed();
-    //
-    // button3 = s.createButton('China');
-    // button3.position(100, 3260);
-    // button3.mousePressed();
+
+    button2 = s.createButton('Remove South America');
+    button2.position(70, 2250);
+    button2.mousePressed(s.test2);
+
+    button3 = s.createButton('Remove Africa');
+    button3.position(70, 2300);
+    button3.mousePressed(s.test3);
 
   }
 
@@ -89,10 +87,11 @@ var fall3 = function (s) {
       .range([0, chartHeight - barHeight]);
 
     for (var i = 0; i < dataSelection.length; i++) {
+
       var d = dataSelection[i];
-      //data.filter(function(d){return d.rivers != "Brantas (Indonesia)"});
-      //var dataFilter = data.filter(function(d){return d.rivers != "Brantas (Indonesia)"});
+
       var barWidth = xScale(d.plastictonnes);
+
       var y = yScale(d.rivers);
 
       s.fill('#D8E5D8');
@@ -113,7 +112,21 @@ var fall3 = function (s) {
 
   s.test = function () {
     dataSelection = data.filter(function (d) {
-      return d.rivers { return d.rivers !=  china }
+      return d.Country1 !== 'Asia';
+      s.redraw();
+    });
+  }
+
+  s.test2 = function () {
+    dataSelection = data.filter(function (d) {
+      return d.Country1 !== 'South America';
+      s.redraw();
+    });
+  }
+
+  s.test3 = function () {
+    dataSelection = data.filter(function (d) {
+      return d.Country1 !== 'Africa';
       s.redraw();
     });
   }

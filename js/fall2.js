@@ -29,7 +29,7 @@ s.setup = function() {
 
   // test button - Achsen tauschen
   button = s.createButton('Achsen tauschen');
-  button.position(100, 1400);
+  button.position(70, 1400);
   button.mousePressed(s.achsentauschen);
 }
 
