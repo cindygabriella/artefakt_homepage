@@ -10,6 +10,8 @@ var sketch2 = function (s) {
 
 
   s.setup = function () {
+
+    s.noLoop();
     d3.csv("csv/recycling.csv", function (d) {
       return {
         Year: +d.Year,
