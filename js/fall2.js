@@ -3,12 +3,11 @@ var sketch2 = function (s) {
 var data = [];
 var ready = false;
 
+
 var button;
 
 var dataSelection = [];
 
-var i = [];
-var j = [];
 
 s.setup = function() {
   d3.csv("csv/recycling.csv", function (d) {
@@ -70,9 +69,6 @@ s.setup = function() {
 
         var yearCount = yearMax - yearMin;
 
-        // Make a call to the custom function achsentauschen()
-
-
       for (var i = 0; i < data.length; i++) {
         var d = data[i];
 
@@ -99,37 +95,57 @@ s.setup = function() {
         s.noStroke();
         s.pop();                     // <- reset the drawing context
       }
-
-      for (var j = 0; j < dataSelection.length; j++) {
-      var d = data[j];
-
-      var y = s.map(d.plastic, plasticMin, plasticMax, 0, 750);
-
-     //Mismanagedplasticwaste auf die y-Achse Mappen
-      var x = s.map(d.Year, yearMin, yearMax, 0, 1000-w);
-
-       //Breite des Balkens
-      var w = 15;
-      s.push();                    // <- push a drawing context
-      // translate(x, y);        // <- move to position
-
-      s.rect(x, s.height-y, w, y);
-
-      // text(d.Year, x,height-y-10);  // <- draw the label
-      s.textAlign(s.CENTER);
-      s.text(d.plastic, x,s.height-y-10);
-      s.text(d.Year, x,s.height-y-30);
-      s.noStroke();
-      s.pop();                     // <- reset the drawing context
-    }
   }
 
   s.achsentauschen = function() {
-    dataSelection = data.filter(function (i) {
-      return data[i];
-      s.redraw();
+
+    var plasticMin = d3.min(data, function (d) {
+      return d.plastic;
     });
+
+      //Maximum Mismanagedplasticwaste finden
+    var plasticMax = d3.max(data, function (d) {
+      return d.plastic;
+    })
+
+    var plasticCount = plasticMax - plasticMin;
+
+
+    var yearMin = d3.min(data, function (d) {
+       return d.Year;
+    });
+
+    var yearMax = d3.max(data, function (d) {
+       return d.Year;
+    });
+
+    var yearCount = yearMax - yearMin;
+
+
+    for (var i = 0; i < dataSelection.length; i++) {
+    var d = data[i];
+
+    var y = s.map(d.plastic, plasticMin, plasticMax, 0, 750);
+
+   //Mismanagedplasticwaste auf die y-Achse Mappen
+    var x = s.map(d.Year, yearMin, yearMax, 0, 1000-w);
+
+     //Breite des Balkens
+    var w = 15;
+    s.push();                    // <- push a drawing context
+    // translate(x, y);        // <- move to position
+
+    s.rect(x, s.height-y, w, y);
+
+    // text(d.Year, x,height-y-10);  // <- draw the label
+    s.textAlign(s.CENTER);
+    s.text(d.plastic, x,s.height-y-10);
+    s.text(d.Year, x,s.height-y-30);
+    s.noStroke();
+    s.pop();                     // <- reset the drawing context
   }
+    s. redraw();
+}
 
 
 

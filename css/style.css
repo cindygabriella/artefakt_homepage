@@ -11,7 +11,12 @@ canvas {
   width: 100%;
 }
 
+h1 {
+  font-family: 'Roboto', sans-serif;
+}
+
 h2 {
+  font-family: 'Roboto', sans-serif;
   font-style: italic;
   margin-left: 30px;
 }
@@ -32,17 +37,18 @@ p {
   margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-  font-family: Helvetica;
+  font-family: 'Raleway', sans-serif;
 }
 
 .text {
   padding-right: 800px;
   margin-left: 30px;
-  font-size: 14px;
+  font-size: 15px;
+  font-family: 'Raleway', sans-serif;
 }
 
 .header {
-  font-family: Helvetica;
+  font-family: 'Roboto', sans-serif;
     width: 100%;
     margin: 0 auto;
     height: 118px;
@@ -78,7 +84,7 @@ p {
 }
 
 .opener {
-  font-family: Helvetica;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 15px;
   text-align: left;
@@ -96,7 +102,7 @@ p {
 
 /* The side navigation menu */
 .sidenav {
-  font-family: Helvetica;
+  font-family: 'Roboto', sans-serif;
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
@@ -194,11 +200,12 @@ button {
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Arial;
+	font-family: 'Roboto', sans-serif;
 	font-size:13px;
 	padding:6px 30px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #c4bdb3;
+  outline:none;
 }
 
 button:hover {

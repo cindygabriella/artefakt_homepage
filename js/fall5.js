@@ -52,7 +52,7 @@ var fall5 = function (s) {
       var r = rScale(d.tonnes);
       var green = s.map(i, 0, data.length, 0, 255);
       s.noStroke();
-      s.fill(green, 200, 0);
+      s.fill(green, 140, 20);
       s.arc(
         s.width / 2,
         s.height / 2,
@@ -63,7 +63,7 @@ var fall5 = function (s) {
       );
 
       lastAngle += s.radians(r);
-      s.fill("pink");
+      s.fill("black");
       s.text(d.tonnes, r, s.arc);
 
   }
