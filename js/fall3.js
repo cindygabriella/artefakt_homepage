@@ -9,6 +9,7 @@ var fall3 = function (s) {
   var button;
   var button2;
   var button3;
+  var button4;
 
   var yScale = d3.scalePoint();
   var xScale = d3.scaleLinear();
@@ -40,17 +41,21 @@ var fall3 = function (s) {
     s.textSize(12);
     //s.pixelDensity(8);
 
-    button = s.createButton('Remove Asia');
+    button = s.createButton('Asia');
     button.position(70, 2200);
     button.mousePressed(s.test);
 
-    button2 = s.createButton('Remove South America');
+    button2 = s.createButton('South America');
     button2.position(70, 2250);
     button2.mousePressed(s.test2);
 
-    button3 = s.createButton('Remove Africa');
+    button3 = s.createButton('Africa');
     button3.position(70, 2300);
     button3.mousePressed(s.test3);
+
+    button4 = s.createButton('All Continents');
+    button4.position(70, 2150);
+    button4.mousePressed(s.test4);
 
   }
 
@@ -112,21 +117,28 @@ var fall3 = function (s) {
 
   s.test = function () {
     dataSelection = data.filter(function (d) {
-      return d.Country1 !== 'Asia';
+      return d.Country1 == 'Asia';
       s.redraw();
     });
   }
 
   s.test2 = function () {
     dataSelection = data.filter(function (d) {
-      return d.Country1 !== 'South America';
+      return d.Country1 == 'South America';
       s.redraw();
     });
   }
 
   s.test3 = function () {
     dataSelection = data.filter(function (d) {
-      return d.Country1 !== 'Africa';
+      return d.Country1 == 'Africa';
+      s.redraw();
+    });
+  }
+
+  s.test4 = function () {
+    dataSelection = data.filter(function (d) {
+      return d.Country1;
       s.redraw();
     });
   }
