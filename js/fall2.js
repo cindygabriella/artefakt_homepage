@@ -26,7 +26,9 @@ var sketch2 = function (s) {
 
     s.createCanvas(1400, 800);
     s.textSize(11);
-    s.pixelDensity(8);
+
+    //warum machst du die pixel density so hoch? 
+    //s.pixelDensity(8);
 
     // test button - Achsen tauschen
     button = s.createButton('Achsen tauschen');
