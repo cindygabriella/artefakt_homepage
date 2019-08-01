@@ -81,15 +81,22 @@ var fall3 = function (s) {
       return d.plastictonnes;
     });
 
-    var river = d3.set(data, function (d) {
+    // var river = d3.set(data, function (d) {
+    //   return d.rivers;
+    // }).values();
+    var river = d3.set(dataSelection, function (d) {
       return d.rivers;
     }).values();
 
+    console.log('river');
+    console.log(river);
 
     var barHeight = 30;
+    var barGap = 5;
+    chartHeight = river.length*(barHeight+barGap);
 
     yScale.domain(river)
-      .range([0, chartHeight - barHeight]);
+      .range([0, chartHeight - barHeight-barGap]);
 
     for (var i = 0; i < dataSelection.length; i++) {
 
