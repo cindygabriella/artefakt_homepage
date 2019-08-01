@@ -18,7 +18,6 @@ let img;
 
   //noLoop();
   s.pixelDensity(8);
-  //uxNoStroke();
 
   projection = d3.geoMercator() //Projektionsart, Auflistung von Projektionen:https://github.com/d3/d3-geo#projections
   .center([16.62878166, 9.995240903]) //Kartenmittelpunkt

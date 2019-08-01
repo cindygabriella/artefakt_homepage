@@ -1,8 +1,8 @@
 var fall5 = function (s) {
 
   var data = [];
-
   var ready = false;
+  var rScale = d3.scaleLinear();
 
   s.setup = function () {
     d3.csv("csv/surface.csv", function (d) {
@@ -16,9 +16,9 @@ var fall5 = function (s) {
       s.redraw();
     });
 
-    s.createCanvas(1400, 800);
+    s.createCanvas(700, 700);
     s.textSize(12);
-    //s.pixelDensity(8);
+    s.pixelDensity(10);
 
   }
 
@@ -35,10 +35,21 @@ var fall5 = function (s) {
 
   s.pieChart = function (diameter, data){
 
+      var tonnesMin = d3.min(data, function(d){
+      return d.tonnes;
+      });
+
+      var tonnesMax = d3.max(data, function(d){
+      return d.tonnes;
+      });
+
+      rScale.domain([tonnesMin, tonnesMax]).range([1, 300]);
+
       var lastAngle = 0;
 
       for (var i = 0; i < data.length; i++) {
       var d = data[i];
+      var r = rScale(d.tonnes);
       var gray = s.map(i, 0, data.length, 0, 255);
       s.fill(gray);
       s.noStroke();
@@ -48,9 +59,12 @@ var fall5 = function (s) {
         diameter,
         diameter,
         lastAngle,
-        lastAngle + s.radians(d.tonnes)
+        lastAngle + s.radians(r)
       );
-    lastAngle += s.radians(d.tonnes);
+    lastAngle += s.radians(r);
+      s.fill(pink);
+      s.text(d.tonnes, diameter, r);
+
   }
 }
 
