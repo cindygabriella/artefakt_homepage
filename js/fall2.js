@@ -8,6 +8,9 @@ var sketch2 = function (s) {
 
   var dataSelection = [];
 
+  const BAR_CHART_1 = "BAR_CHART_1";
+  const BAR_CHART_2 = "BAR_CHART_2";
+  var chartType = BAR_CHART_1;
 
   s.setup = function () {
 
@@ -37,14 +40,26 @@ var sketch2 = function (s) {
   }
 
   s.draw = function () {
-    // if (!ready) {
-    //   s.background(255, 0, 0);
-    //   s.noStroke();
-    //   return;
-    // } else {
-    //   s.background(255);
-    // }
+    if (!ready) {
+      s.background(255, 0, 0);
+      s.noStroke();
+      return;
+    } else {
+      s.background(255);
+    }
 
+    if (chartType == BAR_CHART_1) {
+      drawBarChart1();
+    }
+    else if (chartType == BAR_CHART_2) {
+      drawBarChart2();
+    }
+
+
+  }
+
+  function drawBarChart1() {
+    console.log('drawBarChart1');
     s.fill('#9dc79d');
     // stroke(0,0,0);
     // strokeWeight(0.2);
@@ -101,8 +116,8 @@ var sketch2 = function (s) {
     }
   }
 
-  s.achsentauschen = function () {
-
+  function drawBarChart2() {
+    console.log('drawBarChart2');
     var plasticMin = d3.min(data, function (d) {
       return d.plastic;
     });
@@ -114,7 +129,6 @@ var sketch2 = function (s) {
 
     var plasticCount = plasticMax - plasticMin;
 
-
     var yearMin = d3.min(data, function (d) {
       return d.Year;
     });
@@ -125,9 +139,10 @@ var sketch2 = function (s) {
 
     var yearCount = yearMax - yearMin;
 
-
-    for (var i = 0; i < dataSelection.length; i++) {
+    //console.log(dataSelection);
+    for (var i = 0; i < data.length; i++) {
       var d = data[i];
+      
 
       var y = s.map(d.plastic, plasticMin, plasticMax, 0, 750);
 
@@ -148,12 +163,24 @@ var sketch2 = function (s) {
       s.noStroke();
       s.pop();                     // <- reset the drawing context
     }
+  }
+
+  s.achsentauschen = function () {
+
+    if (chartType == BAR_CHART_1) {
+      chartType = BAR_CHART_2;
+    }
+    else {
+      chartType = BAR_CHART_1;
+    }
+  
     s.redraw();
+  
   }
 
 
-
-
 }
+
+
 
 new p5(sketch2, 'grafik2');
