@@ -16,9 +16,9 @@ var fall5 = function (s) {
       s.redraw();
     });
 
-    s.createCanvas(700, 700);
+    s.createCanvas(700, 600);
     s.textSize(12);
-    s.pixelDensity(10);
+    // s.pixelDensity(10);
 
   }
 
@@ -50,9 +50,9 @@ var fall5 = function (s) {
       for (var i = 0; i < data.length; i++) {
       var d = data[i];
       var r = rScale(d.tonnes);
-      var gray = s.map(i, 0, data.length, 0, 255);
-      s.fill(gray);
+      var green = s.map(i, 0, data.length, 0, 255);
       s.noStroke();
+      s.fill(green, 200, 0);
       s.arc(
         s.width / 2,
         s.height / 2,
@@ -61,9 +61,10 @@ var fall5 = function (s) {
         lastAngle,
         lastAngle + s.radians(r)
       );
-    lastAngle += s.radians(r);
-      s.fill(pink);
-      s.text(d.tonnes, diameter, r);
+
+      lastAngle += s.radians(r);
+      s.fill("pink");
+      s.text(d.tonnes, r, s.arc);
 
   }
 }
