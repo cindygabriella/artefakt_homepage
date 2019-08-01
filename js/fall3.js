@@ -96,10 +96,10 @@ var fall3 = function (s) {
 
     var barHeight = 30;
     var barGap = 5;
-    chartHeight = river.length*(barHeight+barGap);
+    chartHeight = river.length * (barHeight + barGap);
 
     yScale.domain(river)
-      .range([0, chartHeight - barHeight-barGap]);
+      .range([0, chartHeight - barHeight - barGap]);
 
     for (var i = 0; i < dataSelection.length; i++) {
 
@@ -128,29 +128,33 @@ var fall3 = function (s) {
   s.test = function () {
     dataSelection = data.filter(function (d) {
       return d.Country1 == 'Asia';
-      s.redraw();
+
     });
+    s.redraw();
   }
 
   s.test2 = function () {
     dataSelection = data.filter(function (d) {
       return d.Country1 == 'South America';
-      s.redraw();
+
     });
+    s.redraw();
   }
 
   s.test3 = function () {
     dataSelection = data.filter(function (d) {
       return d.Country1 == 'Africa';
-      s.redraw();
+
     });
+    s.redraw();
   }
 
   s.test4 = function () {
     dataSelection = data.filter(function (d) {
       return d.Country1;
-      s.redraw();
+
     });
+    s.redraw();
   }
 
 }
