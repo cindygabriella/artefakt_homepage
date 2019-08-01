@@ -17,7 +17,10 @@ var fall3 = function (s) {
   var chartWidth = 1300;
   var chartHeight = 700;
 
+
   s.setup = function () {
+
+    s.noLoop();
     d3.csv("csv/rivers.csv", function (d) {
       return {
         Code: +d.Code,
