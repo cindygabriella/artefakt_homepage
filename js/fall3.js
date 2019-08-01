@@ -17,7 +17,10 @@ var fall3 = function (s) {
   var chartWidth = 1300;
   var chartHeight = 700;
 
+
   s.setup = function () {
+
+    s.noLoop();
     d3.csv("csv/rivers.csv", function (d) {
       return {
         Code: +d.Code,
@@ -81,15 +84,22 @@ var fall3 = function (s) {
       return d.plastictonnes;
     });
 
-    var river = d3.set(data, function (d) {
+    // var river = d3.set(data, function (d) {
+    //   return d.rivers;
+    // }).values();
+    var river = d3.set(dataSelection, function (d) {
       return d.rivers;
     }).values();
 
+    console.log('river');
+    console.log(river);
 
     var barHeight = 30;
+    var barGap = 5;
+    chartHeight = river.length * (barHeight + barGap);
 
     yScale.domain(river)
-      .range([0, chartHeight - barHeight]);
+      .range([0, chartHeight - barHeight - barGap]);
 
     for (var i = 0; i < dataSelection.length; i++) {
 
@@ -118,29 +128,33 @@ var fall3 = function (s) {
   s.test = function () {
     dataSelection = data.filter(function (d) {
       return d.Country1 == 'Asia';
-      s.redraw();
+
     });
+    s.redraw();
   }
 
   s.test2 = function () {
     dataSelection = data.filter(function (d) {
       return d.Country1 == 'South America';
-      s.redraw();
+
     });
+    s.redraw();
   }
 
   s.test3 = function () {
     dataSelection = data.filter(function (d) {
       return d.Country1 == 'Africa';
-      s.redraw();
+
     });
+    s.redraw();
   }
 
   s.test4 = function () {
     dataSelection = data.filter(function (d) {
       return d.Country1;
-      s.redraw();
+
     });
+    s.redraw();
   }
 
 }
