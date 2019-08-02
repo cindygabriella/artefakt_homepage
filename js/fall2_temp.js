@@ -15,11 +15,11 @@ var sketch2 = function (s) {
   s.setup = function () {
 
     s.noLoop();
-    d3.csv("csv/recycling.csv", function (d) {
+    d3.csv("csv/temperature.csv", function (d) {
       return {
         Year: +d.Year,
         Entity: d.Entity,
-        plastic: +d.plastic,
+        median: +d.median,
       };
     }).then(function (csv) {
       data = csv;
@@ -30,8 +30,7 @@ var sketch2 = function (s) {
     s.createCanvas(1400, 800);
     s.textSize(11);
 
-    //warum machst du die pixel density so hoch?
-    //s.pixelDensity(8);
+    s.pixelDensity(10);
 
     // test button - Achsen tauschen
     button = s.createButton('Achsen tauschen');
@@ -59,23 +58,23 @@ var sketch2 = function (s) {
   }
 
   function drawBarChart1() {
-    console.log('drawBarChart1');
+    // console.log('drawBarChart1');
     s.fill('#9dc79d');
     // stroke(0,0,0);
     // strokeWeight(0.2);
 
     s.noStroke();
 
-    var plasticMin = d3.min(data, function (d) {
-      return d.plastic;
+    var medianMin = d3.min(data, function (d) {
+      return d.median;
     });
 
     //Maximum Mismanagedplasticwaste finden
-    var plasticMax = d3.max(data, function (d) {
-      return d.plastic;
+    var medianMax = d3.max(data, function (d) {
+      return d.median;
     })
 
-    var plasticCount = plasticMax - plasticMin;
+    var medianCount = medianMax - medianMin;
 
 
     var yearMin = d3.min(data, function (d) {
@@ -93,7 +92,7 @@ var sketch2 = function (s) {
 
       //Höhe des Balkens
       //var h = 15;
-      var barHeight = 15;
+      var barHeight = 1;
 
       //yearMin wird auf s.height gemappt
       //yearMax wird auf 0 gemappt
@@ -103,31 +102,35 @@ var sketch2 = function (s) {
       var x = 60;
 
       //ich nenne das mal barWidth damit es klar ist was gemeint ist
-      var barWidth = s.map(d.plastic, plasticMin, plasticMax, 0, 750);
+      var barWidth = s.map(d.median, medianMin, medianMax, 0, 790);
 
       s.push();                    // <- push a drawing context
       //s.rect(0 - y, s.height - x, x, h);
       s.rect(x, y, barWidth, barHeight);
       s.textAlign(s.LEFT, s.CENTER);
-      s.text(d.Year, x - 60, y + 0.5 * barHeight);
-      s.text(d.plastic, x - 30, y + 0.5 * barHeight);
+      // s.text(d.Year, x - 60, y + 0.5 * barHeight);
+      s.text(yearMin,0, 790);
+      s.text(yearMax,0, 5);
+      s.text(medianMin, 28, 790);
+      s.text(medianMax, 28, 5);
+      // s.text(d.median, x - 30, y + 0.5 * barHeight);
       s.noStroke();
       s.pop();                     // <- reset the drawing context
     }
   }
 
   function drawBarChart2() {
-    console.log('drawBarChart2');
-    var plasticMin = d3.min(data, function (d) {
-      return d.plastic;
+    // console.log('drawBarChart2');
+    var medianMin = d3.min(data, function (d) {
+      return d.median;
     });
 
     //Maximum Mismanagedplasticwaste finden
-    var plasticMax = d3.max(data, function (d) {
-      return d.plastic;
+    var medianMax = d3.max(data, function (d) {
+      return d.median;
     })
 
-    var plasticCount = plasticMax - plasticMin;
+    var medianCount = medianMax - medianMin;
 
     var yearMin = d3.min(data, function (d) {
       return d.Year;
@@ -144,13 +147,13 @@ var sketch2 = function (s) {
       var d = data[i];
 
 
-      var y = s.map(d.plastic, plasticMin, plasticMax, 0, 750);
+      var y = s.map(d.median, medianMin, medianMax, 0, 790);
 
       //Mismanagedplasticwaste auf die y-Achse Mappen
-      var x = s.map(d.Year, yearMin, yearMax, 0, 1000 - w);
+      var x = s.map(d.Year, yearMin, yearMax, 0, 1400 - w);
 
       //Breite des Balkens
-      var w = 15;
+      var w = 2;
       s.push();                    // <- push a drawing context
       // translate(x, y);        // <- move to position
 
@@ -158,8 +161,10 @@ var sketch2 = function (s) {
 
       // text(d.Year, x,height-y-10);  // <- draw the label
       s.textAlign(s.CENTER);
-      s.text(d.plastic, x, s.height - y - 10);
-      s.text(d.Year, x, s.height - y - 30);
+      // s.text(d.median, x, s.height - y - 10);
+      // s.text(d.Year, x, s.height - y - 30);
+      s.text(yearMin, 8, 790);
+      s.text(yearMax, 1385, 10);
       s.noStroke();
       s.pop();                     // <- reset the drawing context
     }
