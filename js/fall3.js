@@ -45,19 +45,19 @@ var fall3 = function (s) {
     //s.pixelDensity(8);
 
     button = s.createButton('Asia');
-    button.position(70, 2200);
+    button.position(70, 3050);
     button.mousePressed(s.test);
 
     button2 = s.createButton('South America');
-    button2.position(70, 2250);
+    button2.position(70, 3100);
     button2.mousePressed(s.test2);
 
     button3 = s.createButton('Africa');
-    button3.position(70, 2300);
+    button3.position(70, 3150);
     button3.mousePressed(s.test3);
 
     button4 = s.createButton('All Continents');
-    button4.position(70, 2150);
+    button4.position(70, 3000);
     button4.mousePressed(s.test4);
 
   }
@@ -70,7 +70,7 @@ var fall3 = function (s) {
       s.noStroke();
       return;
     } else {
-      s.background(255);
+      s.background(255,250,250);
     }
 
     var maxPop = d3.max(data, function (d) {

@@ -14,7 +14,7 @@ var sketch1 = function (s) {
     slider = s.createSlider(400000000, 700000000, 400000000);
     //slider.position(110, 600);
     slider.position(100, 100);
-    slider2 = s.createSlider(1950, 2015, 1950);
+    slider2 = s.createSlider(1950, 2014, 1950);
     slider2.position(100, 180);
 
     d3.csv("csv/globalplasticsproduction.csv", function (d) {
@@ -40,7 +40,7 @@ var sketch1 = function (s) {
       s.noStroke();
       return;
     } else {
-      s.background(255);
+      s.background(255,250,250);
     }
 
     var d, x, y, w, h;

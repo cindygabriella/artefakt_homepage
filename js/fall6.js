@@ -45,7 +45,7 @@ s.draw = function()  {
     s.noStroke();
     return;
   } else {
-    s.background(255);
+    s.background(255,250,250);
     // s.image(img, 440, 140, 780, 420);
 
   }

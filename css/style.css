@@ -4,6 +4,7 @@ html, body {
   display: block;
   margin-left: 10px;
   height: 100%;
+  background-color: #fffafa;
 }
 
 canvas {
@@ -22,10 +23,10 @@ h2 {
 }
 
 img {
-  display: block;
   margin-left: auto;
   margin-right: auto
 }
+
 
 div {
   display: block;
@@ -54,11 +55,12 @@ p {
     height: 118px;
     /* background: black; */
     /* padding-bottom: 7px; */
-    background-color: #fff;
+    /* background-color: #fff; */
     /* box-shadow: 0 0 10px rgba(0,0,0,.2); */
     /* -webkit-box-shadow: 0 0 10px rgba(0,0,0,.2); */
     position: relative;
     text-align: center;
+    background-color: #fffafa;
     }
 
 .header-link {
@@ -145,6 +147,10 @@ p {
   transition: margin-left .5s;
   padding: 20px;
   object-position: center;
+}
+
+section {
+  transition: margin-left .5s;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */

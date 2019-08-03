@@ -27,7 +27,7 @@ var fall5 = function (s) {
       s.background(255, 0, 0);
       return;
     } else {
-      s.background(255);
+      s.background(255,250,250);
       s.pieChart(500, data);
     }
   }

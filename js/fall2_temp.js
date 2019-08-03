@@ -34,7 +34,7 @@ var sketch2 = function (s) {
 
     // test button - Achsen tauschen
     button = s.createButton('Achsen tauschen');
-    button.position(70, 1400);
+    button.position(70, 2200);
     button.mousePressed(s.achsentauschen);
   }
 
@@ -44,7 +44,7 @@ var sketch2 = function (s) {
       s.noStroke();
       return;
     } else {
-      s.background(255);
+      s.background(255,250,250);
     }
 
     if (chartType == BAR_CHART_1) {
