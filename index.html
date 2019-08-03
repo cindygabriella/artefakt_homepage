@@ -14,6 +14,7 @@
   <script src="js/jquery.onepage-scroll.js"></script>
   <script src="js/jquery.onepage-scroll.min.js"></script>
 
+  <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
 
   <link rel="stylesheet" type="text/css" href="css/onepage-scroll.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -36,8 +37,10 @@
   </div>
   <!-- Menübar Ende-->
 
-
+  <div class="main">
   <div id="main">
+
+    <section>
     <div class="header">
 
       <a class="header-link" href="index.html"><img src="images/logo.png" height="70" width="70"></a>
@@ -45,12 +48,9 @@
           style="font-size:25px;text-decoration:underline;cursor:pointer;margin-left:30px;display: inline-block"
           onclick="openNav()">MENÜ</span> </p>
     </div>
-</div>
 
-
-  <div class="main">
       <!-- INTRO -->
-    <section>
+
     <div class="hintergrund">
       <h1>0 HUMBOLDT - ODER DIE WOHL ERSTE INFOGRAFIK</h1>
       <h2>1802</h2>
@@ -59,7 +59,7 @@
     </div></section>
 
       <!-- GRAFIK 1 -->
-    <section>
+    <section><br>
     <div class="hintergrund">
       <h1>1 PLASTIC, PLASTIC, PLASTIC - MANIPULATION DER Y-ACHSE</h1>
       <h2>Wie viel Plastik und Abfall produzieren wir? </h2>
@@ -71,29 +71,29 @@
     <script src="js/fall1.js"></script></section>
 
         <!-- GRAFIK 2 -->
-    <section>
+    <section><br>
     <div class="hintergrund"><h1>2 AVERAGE TEMPERATURE ANOMALY, GLOBAL - ACHSEN TAUSCHEN</h1></div>
     <div id="grafik2"></div>
     <script src="js/fall2_temp.js"></script></section>
 
         <!-- GRAFIK 3 -->
-    <section>
+    <section><br>
     <div class="hintergrund"><h1>3 PLASTIC OCEAN INPUT FROM TOP 20 RIVERS, 2015 - DATEN WEGLASSEN</h1></div>
     <div id="grafik3"></div>
     <script id="test" src="js/fall3.js"></script></section>
 
       <!-- GRAFIK 5 -->
-    <section>
+    <section><br>
     <div class="hintergrund"><h1>5 SURFACE PLASTIC MASS BY OCEAN BASIN, 2013 - FALSCHER GRAPH-TYP</h1></div>
     <div id="grafik5"></div>
     <script id="test" src="js/fall5.js"></script></section>
 
       <!-- GRAFIK 6 -->
-    <section>
+    <section><br>
     <div class="hintergrund"><h1>6 PLASTIC WASTE GENERATION PER PERSON, 2010 - ENTGEGEN GEWOHNTENHEITEN EINFÄRBEN</h1></div>
     <div id="grafik6"></div>
     <script src="js/fall6.js"></script></section>
-
+</div>
   </div>
 
 
@@ -106,8 +106,7 @@
   <script>
       $(".main").onepage_scroll({
        sectionContainer: "section",
-       easing: "ease",                  // Easing options accepts the CSS3 easing animation such "ease", "linear", "ease-in",
-                                        // "ease-out", "ease-in-out", or even cubic bezier value such as "cubic-bezier(0.175, 0.885, 0.420, 1.310)"
+       easing: "ease-in",                //  "ease", "linear", "ease-in", "ease-out", "ease-in-out", or even cubic bezier value such as "cubic-bezier(0.175, 0.885, 0.420, 1.310)"
        animationTime: 700,             // AnimationTime let you define how long each section takes to animate
        pagination: true,                // You can either show or hide the pagination. Toggle true for show, false for hide.
        updateURL: false,                // Toggle this true if you want the URL to be updated automatically when the user scroll to each page.

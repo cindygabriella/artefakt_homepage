@@ -34,7 +34,7 @@ var sketch2 = function (s) {
 
     // test button - Achsen tauschen
     button = s.createButton('Achsen tauschen');
-    button.position(70, 2200);
+    button.position(70, 200);
     button.mousePressed(s.achsentauschen);
   }
 

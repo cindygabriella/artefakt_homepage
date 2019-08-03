@@ -44,21 +44,23 @@ var fall3 = function (s) {
     s.textSize(12);
     //s.pixelDensity(8);
 
+    button4 = s.createButton('All Continents');
+    button4.position(70, 200);
+    button4.mousePressed(s.test4);
+
     button = s.createButton('Asia');
-    button.position(70, 3050);
+    button.position(70, 250);
     button.mousePressed(s.test);
 
     button2 = s.createButton('South America');
-    button2.position(70, 3100);
+    button2.position(70, 300);
     button2.mousePressed(s.test2);
 
     button3 = s.createButton('Africa');
-    button3.position(70, 3150);
+    button3.position(70, 350);
     button3.mousePressed(s.test3);
 
-    button4 = s.createButton('All Continents');
-    button4.position(70, 3000);
-    button4.mousePressed(s.test4);
+
 
   }
 
