@@ -44,6 +44,7 @@ p {
 }
 
 .text {
+  text-align: justify;
   padding-right: 800px;
   margin-left: 30px;
   font-size: 16px;
@@ -219,4 +220,8 @@ button:hover {
 button:active {
   position:relative;
   top:1px;
+}
+
+img:hover {
+  transform: scale(1.5);
 }

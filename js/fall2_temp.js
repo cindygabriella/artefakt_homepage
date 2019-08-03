@@ -99,7 +99,7 @@ var sketch2 = function (s) {
       var y = s.map(d.Year, yearMin, yearMax, s.height - barHeight, 0);
 
       //x ist immer null beim horizontal bar chart
-      var x = 60;
+      var x = 80;
 
       //ich nenne das mal barWidth damit es klar ist was gemeint ist
       var barWidth = s.map(d.median, medianMin, medianMax, 0, 790);
@@ -109,10 +109,12 @@ var sketch2 = function (s) {
       s.rect(x, y, barWidth, barHeight);
       s.textAlign(s.LEFT, s.CENTER);
       // s.text(d.Year, x - 60, y + 0.5 * barHeight);
+      s.textSize(16);
       s.text(yearMin,0, 790);
-      s.text(yearMax,0, 5);
-      s.text(medianMin, 28, 790);
-      s.text(medianMax, 28, 5);
+      s.text(yearMax,0, 10);
+      s.textSize(13);
+      s.text(medianMin, 40, 790);
+      s.text(medianMax, 40, 10);
       // s.text(d.median, x - 30, y + 0.5 * barHeight);
       s.noStroke();
       s.pop();                     // <- reset the drawing context
@@ -157,14 +159,15 @@ var sketch2 = function (s) {
       s.push();                    // <- push a drawing context
       // translate(x, y);        // <- move to position
 
-      s.rect(x, s.height - y, w, y);
+      s.rect(x, s.height - y-30, w, y);
 
       // text(d.Year, x,height-y-10);  // <- draw the label
       s.textAlign(s.CENTER);
       // s.text(d.median, x, s.height - y - 10);
       // s.text(d.Year, x, s.height - y - 30);
-      s.text(yearMin, 8, 790);
-      s.text(yearMax, 1385, 10);
+      s.textSize(16);
+      s.text(yearMin, 20, 790);
+      s.text(yearMax, 1380, 790);
       s.noStroke();
       s.pop();                     // <- reset the drawing context
     }
