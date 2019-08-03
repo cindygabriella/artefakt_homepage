@@ -6,7 +6,6 @@
   <script src="js/menu.js"></script>
   <script src="js/p5.min.js"></script>
   <script src="js/p5.dom.min.js"></script>
-  <!-- <script src="js/p5.sound.min.js"></script> -->
   <script src="js/d3.v5.min.js"></script>
   <script src="js/p5.scribble.js"></script>
 
@@ -37,11 +36,10 @@
   </div>
   <!-- Menübar Ende-->
 
-  <div class="main">
   <div id="main">
 
     <section>
-    <div class="header">
+    <div class="header" style="padding-top: 20px;">
 
       <a class="header-link" href="index.html"><img src="images/logo.png" height="70" width="70"></a>
       <p class="opener"> <span class="menue"
@@ -52,11 +50,13 @@
       <!-- INTRO -->
 
     <div class="hintergrund">
-      <h1>0 HUMBOLDT - ODER DIE WOHL ERSTE INFOGRAFIK</h1>
-      <h2>1802</h2>
+      <h1>0 HUMBOLDT 1802 - ODER DIE WOHL ERSTE INFOGRAFIK</h1>
       <img src="images/humboldt.jpg" width="800"></img>
-      <p class="text">Waren es 1950 noch «lediglich» weltweit 2 Millionen Tonnen/Jahr, ist die jährliche Produktion 2015 mit 381 Millionen Tonnen/Jahr bereits um das fast 200-fache gestiegen. Dies entspricht etwa der Masse von 2/3 der Weltbevölkerung. Zwischen 1950 – 2015 hat die kumulative Produktion 7.8 Billionen Tonnen Plastik erreicht, mehr als eine Tonne pro lebende Person.</p>
-    </div></section>
+      <p class="text">Vor rund 250 Jahren beschrieb der deutsche universalgelehrte Alexander von Humboldt ein für die damalige Zeit völlig neues Naturverständnis. Während seiner fünf jährigen Expedition auf dem nord- und südamerikanischen Kontinent (1799 - 1804) notierte er in seinem Tagebuch: "Die Welt ist wie ein Organismus, in dem alles miteinander verbunden ist". Humboldt war der Erste, der einen vom Menschen verursachten Klimawandel thematisierte und seine Beobachtungen sind heute so aktuell wie vor zwei Jahrhunderten. Auf seinen Reisen sammelte er Unmengen an Pflanzen und wissenschaftlichen Daten, welche er 1807 auf eindrückliche Weise im sogenannten "Naturgemälde" systematisch abbildete. Heute als erste Infografik bezeichnet zeigt die Abbildung einen idealisierten Querschnitt durch die Anden mit allen dort gefundenen Pflanzen und die miteinander verknüpften Messergebnisse (vgl. National Geographic, deutsche Ausgabe Juli 2019).
+        <br><br>In meiner Bachelorarbeit befasste ich mich näher mit verschiedenen Aspekten von Falschnachrichten und wie Schweizer Medienhäuser damit umgehen. Die Veröffentlichungen von Humboldt wurden weder damals noch heute als Fake News bezeichnet. Doch während damaliger Wissenschaftler alles einzuordnen und zu klassifizieren versuchten, war Humboldts Vorstellung die Welt als lebendigen Mechanismus zu sehen, in dem alles miteinander verbunden ist, nicht bei allen gern gesehen. Damals wie heute werden Beobachtungen so ausgewertet, dass sie dem aktuellen Zeitgeist entsprechen. Dass Datensätze falsch interpretiert und publiziert werden muss dabei auch gar nicht absichtlich geschehen.
+<br><br>Ich lade Sie dazu ein mit untenstehenden Infografiken zu spielen. Schnell entsteht ein ganz anderes Bild, wenn man beispielsweise nur einen Kontinent anstatt der ganzen Welt mit einbezieht, oder wenn man sich auf der Zeitachse auf das letzte Jahrzehnt beschränkt anstatt mehrerer Jahrhunderte abbildet. Die Infografiken habe ich basierend auf öffentlich verfügbaren Datensätzen zur Plastikverschmutzung und Klimawandel erstellt und mit der JavaScript Bibliothek p5.js so aufbereitet, dass der Benutzer die Darstellungsform interaktiv manipulieren kann. Viel Spass!
+</p>
+      </div></section>
 
       <!-- GRAFIK 1 -->
     <section><br>
@@ -94,7 +94,6 @@
     <div id="grafik6"></div>
     <script src="js/fall6.js"></script></section>
 </div>
-  </div>
 
 
     <div class="footer">
@@ -104,7 +103,7 @@
 
 
   <script>
-      $(".main").onepage_scroll({
+      $("#main").onepage_scroll({
        sectionContainer: "section",
        easing: "ease-in",                //  "ease", "linear", "ease-in", "ease-out", "ease-in-out", or even cubic bezier value such as "cubic-bezier(0.175, 0.885, 0.420, 1.310)"
        animationTime: 700,             // AnimationTime let you define how long each section takes to animate

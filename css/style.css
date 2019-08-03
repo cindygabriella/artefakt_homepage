@@ -23,6 +23,8 @@ h2 {
 }
 
 img {
+  float: right;
+  padding-right: 10px;
   margin-left: auto;
   margin-right: auto
 }
@@ -44,14 +46,13 @@ p {
 .text {
   padding-right: 800px;
   margin-left: 30px;
-  font-size: 15px;
+  font-size: 16px;
   font-family: 'Raleway', sans-serif;
 }
 
 .header {
   font-family: 'Roboto', sans-serif;
     width: 100%;
-    padding-top: 20px;
     margin: 0 auto;
     height: 118px;
     /* background: black; */
@@ -88,7 +89,7 @@ p {
 .opener {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 16px;
   text-align: left;
   text-transform: uppercase;
   position: absolute;
@@ -97,7 +98,7 @@ p {
 }
 
 .hintergrund {
-  padding-top: 10px;
+  /* padding-top: 10px; */
   padding-bottom: 10px;
   margin-left: 20px;
   /* background-color: #F0FFF0; */

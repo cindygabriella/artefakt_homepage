@@ -1,6 +1,4 @@
 body, html {
-  margin: 0;
-  margin-left: 10px;
   overflow: hidden;
   -webkit-transition: opacity 400ms;
   -moz-transition: opacity 400ms;
