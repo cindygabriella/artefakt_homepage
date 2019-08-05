@@ -53,7 +53,7 @@ p {
 }
 
 .header {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
     width: 100%;
     margin: 0 auto;
     height: 118px;
@@ -89,7 +89,7 @@ p {
 }
 
 .opener {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-weight: 400;
   font-size: 16px;
   text-align: left;
@@ -108,7 +108,7 @@ p {
 
 /* The side navigation menu */
 .sidenav {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
@@ -206,7 +206,7 @@ button {
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Raleway', sans-serif;
 	font-size:13px;
 	padding:6px 30px;
 	text-decoration:none;

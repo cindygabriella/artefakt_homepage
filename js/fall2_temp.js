@@ -27,14 +27,14 @@ var sketch2 = function (s) {
       s.redraw();
     });
 
-    s.createCanvas(1400, 800);
+    s.createCanvas(1400, 650);
     s.textSize(11);
 
     s.pixelDensity(10);
 
     // test button - Achsen tauschen
     button = s.createButton('Achsen tauschen');
-    button.position(70, 200);
+    button.position(70, 500);
     button.mousePressed(s.achsentauschen);
   }
 
@@ -102,22 +102,21 @@ var sketch2 = function (s) {
       var x = 80;
 
       //ich nenne das mal barWidth damit es klar ist was gemeint ist
-      var barWidth = s.map(d.median, medianMin, medianMax, 0, 790);
+      var barWidth = s.map(d.median, medianMin, medianMax, 0, 640);
 
-      s.push();                    // <- push a drawing context
-      //s.rect(0 - y, s.height - x, x, h);
+      s.push();
       s.rect(x, y, barWidth, barHeight);
       s.textAlign(s.LEFT, s.CENTER);
       // s.text(d.Year, x - 60, y + 0.5 * barHeight);
       s.textSize(16);
-      s.text(yearMin,0, 790);
+      s.text(yearMin,0, 640);
       s.text(yearMax,0, 10);
       s.textSize(13);
-      s.text(medianMin, 40, 790);
-      s.text(medianMax, 40, 10);
+      s.text(medianMin, 40, 640);
+      s.text(medianMax, 800, 640);
       // s.text(d.median, x - 30, y + 0.5 * barHeight);
       s.noStroke();
-      s.pop();                     // <- reset the drawing context
+      s.pop();
     }
   }
 
@@ -144,30 +143,32 @@ var sketch2 = function (s) {
 
     var yearCount = yearMax - yearMin;
 
-    //console.log(dataSelection);
     for (var i = 0; i < data.length; i++) {
       var d = data[i];
 
 
-      var y = s.map(d.median, medianMin, medianMax, 0, 790);
+      var y = s.map(d.median, medianMin, medianMax, 0, 640);
 
       //Mismanagedplasticwaste auf die y-Achse Mappen
       var x = s.map(d.Year, yearMin, yearMax, 0, 1400 - w);
 
       //Breite des Balkens
-      var w = 2;
+      var w = 3;
       s.push();                    // <- push a drawing context
       // translate(x, y);        // <- move to position
 
-      s.rect(x, s.height - y-30, w, y);
+      s.rect(x+30, s.height - y-30, w, y);
 
       // text(d.Year, x,height-y-10);  // <- draw the label
       s.textAlign(s.CENTER);
       // s.text(d.median, x, s.height - y - 10);
       // s.text(d.Year, x, s.height - y - 30);
       s.textSize(16);
-      s.text(yearMin, 20, 790);
-      s.text(yearMax, 1380, 790);
+      s.text(yearMin, 20, 645);
+      s.text(yearMax, 1380, 645);
+      s.textSize(13);
+      s.text(medianMin, 20, 625);
+      s.text(medianMax, 20, 10);
       s.noStroke();
       s.pop();                     // <- reset the drawing context
     }

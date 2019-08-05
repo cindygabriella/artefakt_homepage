@@ -15,7 +15,7 @@ var fall3 = function (s) {
   var xScale = d3.scaleLinear();
 
   var chartWidth = 1300;
-  var chartHeight = 700;
+  var chartHeight = 600;
 
 
   s.setup = function () {
@@ -40,24 +40,24 @@ var fall3 = function (s) {
       s.redraw();
     });
 
-    s.createCanvas(1400, 800);
+    s.createCanvas(1400, 700);
     s.textSize(12);
     //s.pixelDensity(8);
 
     button4 = s.createButton('All Continents');
-    button4.position(70, 200);
+    button4.position(70, 280);
     button4.mousePressed(s.test4);
 
     button = s.createButton('Asia');
-    button.position(70, 250);
+    button.position(70, 330);
     button.mousePressed(s.test);
 
     button2 = s.createButton('South America');
-    button2.position(70, 300);
+    button2.position(70, 380);
     button2.mousePressed(s.test2);
 
     button3 = s.createButton('Africa');
-    button3.position(70, 350);
+    button3.position(70, 430);
     button3.mousePressed(s.test3);
 
 
@@ -93,11 +93,8 @@ var fall3 = function (s) {
       return d.rivers;
     }).values();
 
-    console.log('river');
-    console.log(river);
-
     var barHeight = 30;
-    var barGap = 5;
+    var barGap = 4;
     chartHeight = river.length * (barHeight + barGap);
 
     yScale.domain(river)
@@ -121,8 +118,8 @@ var fall3 = function (s) {
       s.noStroke();
       s.textAlign(s.LEFT, s.CENTER);
       s.text(d.rivers, barWidth + 10, y + 0.5 * barHeight);
-      s.text(maxPop, 1300, 730);
-      s.text(minPop, 0, 730);
+      s.text(maxPop, 1300, 690);
+      s.text(minPop, 0, 690);
 
     }
   }
