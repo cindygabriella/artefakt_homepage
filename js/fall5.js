@@ -4,6 +4,16 @@ var fall5 = function (s) {
   var ready = false;
   var rScale = d3.scaleLinear();
 
+  var button;
+  var button2;
+
+  // const KUCHEN = "KUCHEN";
+  // const BALKEN = "BALKEN";
+  // var chartType = KUCHEN;
+
+  var yScale = d3.scalePoint();
+  var xScale = d3.scaleLinear();
+
   s.setup = function () {
     d3.csv("csv/surface.csv", function (d) {
       return {
@@ -20,6 +30,13 @@ var fall5 = function (s) {
     s.textSize(12);
     // s.pixelDensity(10);
 
+    button = s.createButton('Kuchendiagramm');
+    button.position(70, 400);
+    button.mousePressed(s.kuchen);
+
+    button2 = s.createButton('Balkendiagramm');
+    button2.position(70, 450);
+    button2.mousePressed(s.balken);
   }
 
   s.draw = function () {
@@ -31,7 +48,6 @@ var fall5 = function (s) {
       s.pieChart(500, data);
     }
   }
-
 
   s.pieChart = function (diameter, data){
 
@@ -52,7 +68,7 @@ var fall5 = function (s) {
       var r = rScale(d.tonnes);
       var green = s.map(i, 0, data.length, 0, 255);
       s.noStroke();
-      s.fill(green, 200, 0);
+      s.fill(green, 200, 140);
       s.arc(
         s.width / 2,
         s.height / 2,
@@ -61,13 +77,14 @@ var fall5 = function (s) {
         lastAngle,
         lastAngle + s.radians(r)
       );
-
       lastAngle += s.radians(r);
-      s.fill("black");
-      s.text(d.tonnes, r, s.arc);
+      // s.textSize(16);
+      // s.fill("black");
+      // s.text(d.tonnes, s.arc, green);
 
   }
 }
+
 
 
 }

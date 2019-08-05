@@ -81,7 +81,7 @@ function drawBarChart1() {
 
       var y = s.map(d.concentration, concentrationMin, concentrationMax, 0, 520);
 
-      var x = s.map(d.Year, yearMin, yearMax, 0, 1360 - w);
+      var x = s.map(d.Year, yearMin, yearMax, 0, s.width-w-60);
 
       //Breite des Balkens
       var w = 15;
@@ -95,7 +95,8 @@ function drawBarChart1() {
       s.textSize(12);
       s.text(yearMin, 45, 580);
       s.text(yearMax, 1374, 580);
-      s.textSize(16);
+      s.text(d.Year, x, s.height - y-30);
+      s.textSize(15);
       s.text(concentrationMin, 0, 570);
       s.text(concentrationMax, 10, 30);
 
@@ -146,7 +147,8 @@ function drawBarChart1() {
       s.textSize(12);
       s.text(yearMin, 45, 580);
       s.text(yearMax, 1374, 580);
-      s.textSize(16);
+      s.text(d.Year, x, s.height - y - 10);
+      s.textSize(15);
       s.text(concentrationMax, 0, 570);
       s.text(concentrationMin, 10, 30);
 
