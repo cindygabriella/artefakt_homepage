@@ -42,7 +42,7 @@ var fall4 = function (s) {
       s.background(255,250,250);
     }
 
-    s.fill('#88b89d');
+    s.fill('#c5e3d2');
     s.noStroke();
 
     if (chartType == BAR_CHART_1) {
@@ -97,7 +97,7 @@ function drawBarChart1() {
       s.text(yearMax, 1374, 580);
       s.textSize(16);
       s.text(concentrationMin, 0, 570);
-      s.text(concentrationMax, 10, 13);
+      s.text(concentrationMax, 10, 30);
 
       s.pop();
     }
@@ -148,7 +148,7 @@ function drawBarChart1() {
       s.text(yearMax, 1374, 580);
       s.textSize(16);
       s.text(concentrationMax, 0, 570);
-      s.text(concentrationMin, 10, 13);
+      s.text(concentrationMin, 10, 30);
 
       s.pop();
     }
