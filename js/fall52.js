@@ -1,22 +1,13 @@
 var fall52 = function (s) {
 
   var data = [];
-
-  //variable die die gefilterten daten enthält
-  // var dataSelection = [];
-
   var ready = false;
-  var button;
-  var button2;
-  var button3;
-  var button4;
 
   var yScale = d3.scalePoint();
   var xScale = d3.scaleLinear();
 
-  var chartWidth = 1300;
+  var chartWidth = 1200;
   var chartHeight = 600;
-
 
   s.setup = function () {
 
@@ -35,25 +26,6 @@ var fall52 = function (s) {
     s.createCanvas(1400, 700);
     s.textSize(12);
     //s.pixelDensity(8);
-
-    // button4 = s.createButton('All Continents');
-    // button4.position(70, 280);
-    // button4.mousePressed(s.test4);
-    //
-    // button = s.createButton('Asia');
-    // button.position(70, 330);
-    // button.mousePressed(s.test);
-    //
-    // button2 = s.createButton('South America');
-    // button2.position(70, 380);
-    // button2.mousePressed(s.test2);
-    //
-    // button3 = s.createButton('Africa');
-    // button3.position(70, 430);
-    // button3.mousePressed(s.test3);
-
-
-
   }
 
 
@@ -78,9 +50,6 @@ var fall52 = function (s) {
       return d.tonnes;
     });
 
-    // var river = d3.set(data, function (d) {
-    //   return d.rivers;
-    // }).values();
     var entity = d3.set(data, function (d) {
       return d.Entity;
     }).values();
@@ -110,8 +79,9 @@ var fall52 = function (s) {
       s.noStroke();
       s.textAlign(s.LEFT, s.CENTER);
       s.text(d.Entity, barWidth + 10, y + 0.5 * barHeight);
-      s.text(maxPop, 1300, 690);
+      s.text(maxPop, 1200, 690);
       s.text(minPop, 0, 690);
+      s.text(d.tonnes, 0, y + 0.5 * barHeight )
 
     }
   }

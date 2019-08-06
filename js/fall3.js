@@ -15,7 +15,7 @@ var fall3 = function (s) {
   var xScale = d3.scaleLinear();
 
   var chartWidth = 1300;
-  var chartHeight = 600;
+  var chartHeight = 700;
 
 
   s.setup = function () {
@@ -111,15 +111,17 @@ var fall3 = function (s) {
       s.fill('#D8E5D8');
 
       s.noStroke();
-      s.rect(0, y, barWidth, barHeight);
+      s.rect(0, y+30, barWidth, barHeight);
 
 
       s.fill('black');
       s.noStroke();
       s.textAlign(s.LEFT, s.CENTER);
-      s.text(d.rivers, barWidth + 10, y + 0.5 * barHeight);
-      s.text(maxPop, 1300, 690);
-      s.text(minPop, 0, 690);
+      s.textSize(12);
+      s.text(d.rivers, barWidth + 10, y + 0.5 * barHeight+30);
+      s.textSize(14);
+      s.text(maxPop, 1300, 15);
+      s.text(minPop, 0, 15);
 
     }
   }

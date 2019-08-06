@@ -69,7 +69,6 @@ var sketch2 = function (s) {
       return d.median;
     });
 
-    //Maximum Mismanagedplasticwaste finden
     var medianMax = d3.max(data, function (d) {
       return d.median;
     })
@@ -99,13 +98,13 @@ var sketch2 = function (s) {
       var y = s.map(d.Year, yearMin, yearMax, s.height - barHeight, 0);
 
       //x ist immer null beim horizontal bar chart
-      var x = 80;
+      var x = 40;
 
       //ich nenne das mal barWidth damit es klar ist was gemeint ist
       var barWidth = s.map(d.median, medianMin, medianMax, 0, 640);
 
       s.push();
-      s.rect(x, y, barWidth, barHeight);
+      s.rect(x, y-25, barWidth, barHeight);
       s.textAlign(s.LEFT, s.CENTER);
       // s.text(d.Year, x - 60, y + 0.5 * barHeight);
       s.textSize(16);
@@ -113,7 +112,7 @@ var sketch2 = function (s) {
       s.text(yearMax,0, 10);
       s.textSize(13);
       s.text(medianMin, 40, 640);
-      s.text(medianMax, 800, 640);
+      s.text(medianMax, 600, 640);
       // s.text(d.median, x - 30, y + 0.5 * barHeight);
       s.noStroke();
       s.pop();
@@ -126,7 +125,6 @@ var sketch2 = function (s) {
       return d.median;
     });
 
-    //Maximum Mismanagedplasticwaste finden
     var medianMax = d3.max(data, function (d) {
       return d.median;
     })
@@ -157,18 +155,18 @@ var sketch2 = function (s) {
       s.push();                    // <- push a drawing context
       // translate(x, y);        // <- move to position
 
-      s.rect(x+30, s.height - y-30, w, y);
+      s.rect(x+40, s.height - y-20, w, y);
 
       // text(d.Year, x,height-y-10);  // <- draw the label
       s.textAlign(s.CENTER);
       // s.text(d.median, x, s.height - y - 10);
       // s.text(d.Year, x, s.height - y - 30);
-      s.textSize(16);
-      s.text(yearMin, 20, 645);
-      s.text(yearMax, 1380, 645);
       s.textSize(13);
-      s.text(medianMin, 20, 625);
-      s.text(medianMax, 20, 10);
+      s.text(yearMin, 48, 645);
+      s.text(yearMax, 1385, 645);
+      s.textSize(16);
+      s.text(medianMin, 20, 630);
+      s.text(medianMax, 20, 60);
       s.noStroke();
       s.pop();                     // <- reset the drawing context
     }
