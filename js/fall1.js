@@ -112,6 +112,10 @@ var sketch1 = function (s) {
 
   };
 
+  s.keyReleased = function() {
+    if (s.key == 's' || s.key == 'S') s.saveCanvas("bild", 'png');
+  }
+
 };
 
 

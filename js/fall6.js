@@ -8,16 +8,16 @@ var rScale = d3.scaleLinear();
 
 let img;
 
-// s.preload = function(){
-//   img = s.loadImage('images/world.png');
-// }
+s.preload = function(){
+  img = s.loadImage('images/world.png');
+}
 
   s.setup = function() {
   s.createCanvas(1700, 700);
   s.textSize(13);
 
   //noLoop();
-  //s.pixelDensity(8);
+  // s.pixelDensity(10);
 
   projection = d3.geoMercator() //Projektionsart, Auflistung von Projektionen:https://github.com/d3/d3-geo#projections
   .center([16.62878166, 9.995240903]) //Kartenmittelpunkt
@@ -46,7 +46,7 @@ s.draw = function()  {
     return;
   } else {
     s.background(255,250,250);
-    // s.image(img, 440, 140, 780, 420);
+    s.image(img, 340, 130, 1000, 420);
 
   }
 
@@ -77,13 +77,12 @@ s.draw = function()  {
   var r = rScale(d.waste);
   s.ellipse(pos[0], pos[1], r, r);
   s.fill(85,107,47, 30);
+  // s.text(d.Entity, pos[0], pos[1]+100);
   }
 
   if (s.mouseX > pos[0] && pos[1]) {
     s.fill(255,0,0, 50);
   }
-
-  //text(d.Entity, pos[0], pos[1]-100);
 
 }
 

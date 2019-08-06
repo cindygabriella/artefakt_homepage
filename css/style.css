@@ -24,7 +24,6 @@ h2 {
 }
 
 img {
-  float: right;
   padding-right: 10px;
   margin-left: auto;
   margin-right: auto
@@ -152,6 +151,13 @@ p {
   padding: 20px;
   object-position: center;
 }
+
+.humb {
+    float: right;
+    width: 56%;
+    height: auto;
+  }
+
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {

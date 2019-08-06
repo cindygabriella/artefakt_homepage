@@ -1,37 +1,69 @@
 var fall4 = function (s) {
 
   var data = [];
+
+  //variable die die gefilterten daten enthält
+  var dataSelection = [];
+
   var ready = false;
-
   var button;
+  var button2;
+  var button3;
+  var button4;
 
-  const BAR_CHART_1 = "BAR_CHART_1";
-  const BAR_CHART_2 = "BAR_CHART_2";
-  var chartType = BAR_CHART_1;
+  var yScale = d3.scalePoint();
+  var xScale = d3.scaleLinear();
+
+  var chartWidth = 1300;
+  var chartHeight = 700;
+
 
   s.setup = function () {
 
     s.noLoop();
-    d3.csv("csv/global-co-concentration-ppm.csv", function (d) {
+    d3.csv("csv/rivers.csv", function (d) {
       return {
-        Year: +d.Year,
-        concentration: +d.concentration,
+        Code: +d.Code,
+        rivers: d.rivers,
+        plastictonnes: +d.plastictonnes,
+        Country1: d.Country1,
+        Country2: d.Country2,
+        Country3: d.Country3,
+        Country4: d.Country4,
+        Country5: d.Country5,
+        Country6: d.Country6,
       };
     }).then(function (csv) {
       data = csv;
+      dataSelection = data;
       ready = true;
       s.redraw();
     });
 
-    s.createCanvas(1400, 600);
-    s.textSize(12);
-    //s.pixelDensity(15);
+    s.createCanvas(1400, 700);
+    //s.pixelDensity(8);
 
-    button = s.createButton('Achsenwerte drehen');
-    button.position(70, 400);
-    button.mousePressed(s.achsendrehen);
+    button4 = s.createButton('All Continents');
+    button4.position(70, 280);
+    button4.mousePressed(s.test4);
+
+    button = s.createButton('Asia');
+    button.position(70, 330);
+    button.mousePressed(s.test);
+
+    button2 = s.createButton('South America');
+    button2.position(70, 380);
+    button2.mousePressed(s.test2);
+
+    button3 = s.createButton('Africa');
+    button3.position(70, 430);
+    button3.mousePressed(s.test3);
+
+
 
   }
+
+
 
   s.draw = function () {
     if (!ready) {
@@ -42,136 +74,90 @@ var fall4 = function (s) {
       s.background(255,250,250);
     }
 
-    s.fill('#c5e3d2');
-    s.noStroke();
-
-    if (chartType == BAR_CHART_1) {
-      drawBarChart1();
-    }
-    else if (chartType == BAR_CHART_2) {
-      drawBarChart2();
-    }
-  }
-
-function drawBarChart1() {
-
-    var concentrationMin = d3.min(data, function (d) {
-      return d.concentration;
+    var maxPop = d3.max(data, function (d) {
+      return d.plastictonnes;
     });
 
-    var concentrationMax = d3.max(data, function (d) {
-      return d.concentration;
-    })
+    xScale.domain([0, maxPop])
+      .range([0, chartWidth]);
 
-    var concentrationCount = concentrationMax - concentrationMin;
-
-
-    var yearMin = d3.min(data, function (d) {
-      return d.Year;
+    var minPop = d3.min(data, function (d) {
+      return d.plastictonnes;
     });
 
-    var yearMax = d3.max(data, function (d) {
-      return d.Year;
-    });
+    // var river = d3.set(data, function (d) {
+    //   return d.rivers;
+    // }).values();
+    var river = d3.set(dataSelection, function (d) {
+      return d.rivers;
+    }).values();
 
-    var yearCount = yearMax - yearMin;
+    var barHeight = 30;
+    var barGap = 4;
+    chartHeight = river.length * (barHeight + barGap);
 
-    for (var i = 0; i < data.length; i++) {
-      var d = data[i];
+    yScale.domain(river)
+      .range([0, chartHeight - barHeight - barGap]);
 
-      var y = s.map(d.concentration, concentrationMin, concentrationMax, 0, 520);
+    for (var i = 0; i < dataSelection.length; i++) {
 
-      var x = s.map(d.Year, yearMin, yearMax, 0, s.width-w-60);
+      var d = dataSelection[i];
 
-      //Breite des Balkens
-      var w = 15;
-      s.push();                    // <- push a drawing context
-      s.rect(x+35, s.height - y-30, w, y);
+      var barWidth = xScale(d.plastictonnes);
 
-      s.textAlign(s.LEFT, s.CENTER);
-      // s.text(d.Year, x - 60, y + 0.5 * barHeight);
-      s.fill("black");
+      var y = yScale(d.rivers);
+
+      s.fill('#D8E5D8');
+
       s.noStroke();
-      s.textSize(12);
-      s.text(yearMin, 45, 580);
-      s.text(yearMax, 1374, 580);
-      s.text(d.Year, x, s.height - y-30);
-      s.textSize(15);
-      s.text(concentrationMin, 0, 570);
-      s.text(concentrationMax, 10, 30);
-
-      s.pop();
-    }
-  }
+      s.rect(0, y+30, barWidth, barHeight);
 
 
-  function drawBarChart2() {
-
-    var concentrationMin = d3.min(data, function (d) {
-      return d.concentration;
-    });
-
-    var concentrationMax = d3.max(data, function (d) {
-      return d.concentration;
-    })
-
-    var concentrationCount = concentrationMax - concentrationMin;
-
-
-    var yearMin = d3.min(data, function (d) {
-      return d.Year;
-    });
-
-    var yearMax = d3.max(data, function (d) {
-      return d.Year;
-    });
-
-    var yearCount = yearMax - yearMin;
-
-    for (var i = 0; i < data.length; i++) {
-      var d = data[i];
-
-      var y = s.map(d.concentration, concentrationMin, concentrationMax, 520, 0);
-
-      var x = s.map(d.Year, yearMin, yearMax, 0, 1360 - w);
-
-      //Breite des Balkens
-      var w = 15;
-      s.push();                    // <- push a drawing context
-      s.rect(x+35, s.height - y-30, w, y);
-
-      s.textAlign(s.LEFT, s.CENTER);
-      // s.text(d.Year, x - 60, y + 0.5 * barHeight);
-      s.fill("black");
+      s.fill('black');
       s.noStroke();
+      s.textAlign(s.LEFT, s.CENTER);
       s.textSize(12);
-      s.text(yearMin, 45, 580);
-      s.text(yearMax, 1374, 580);
-      s.text(d.Year, x, s.height - y - 10);
-      s.textSize(15);
-      s.text(concentrationMax, 0, 570);
-      s.text(concentrationMin, 10, 30);
+      s.text(d.rivers, barWidth + 10, y + 0.5 * barHeight+30);
+      s.textSize(14);
+      s.noStroke();
+      s.text(maxPop, 1300, 15);
+      s.text(minPop, 0, 15);
 
-      s.pop();
     }
-
   }
 
-  s.achsendrehen = function () {
+  s.test = function () {
+    dataSelection = data.filter(function (d) {
+      return d.Country1 == 'Asia';
 
-    if (chartType == BAR_CHART_1) {
-      chartType = BAR_CHART_2;
-    }
-    else {
-      chartType = BAR_CHART_1;
-    }
-
+    });
     s.redraw();
-
   }
 
+  s.test2 = function () {
+    dataSelection = data.filter(function (d) {
+      return d.Country1 == 'South America';
+
+    });
+    s.redraw();
+  }
+
+  s.test3 = function () {
+    dataSelection = data.filter(function (d) {
+      return d.Country1 == 'Africa';
+
+    });
+    s.redraw();
+  }
+
+  s.test4 = function () {
+    dataSelection = data.filter(function (d) {
+      return d.Country1;
+
+    });
+    s.redraw();
+  }
 
 }
-
 
 new p5(fall4, 'grafik4');
