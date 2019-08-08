@@ -16,7 +16,7 @@ var fall6 = function (s) {
     s.createCanvas(1700, 700);
     s.textSize(13);
 
-    s.noLoop();
+    // s.noLoop();
     // s.pixelDensity(10);
 
     projection = d3.geoMercator() //Projektionsart, Auflistung von Projektionen:https://github.com/d3/d3-geo#projections

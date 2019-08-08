@@ -7,7 +7,7 @@ var sketch1 = function (s) {
   var slider2;
 
   s.setup = function() {
-    s.noLoop();
+
     s.createCanvas(1700, 500);
     s.textSize(11);
     s.pixelDensity(6);
@@ -29,7 +29,7 @@ var sketch1 = function (s) {
       s.redraw();
     });
 
-
+      // s.noLoop();
 
 
   }

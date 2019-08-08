@@ -66,6 +66,10 @@ p {
     background-color: #fffafa;
     }
 
+#blabla {
+    background-image: url("images/logo.png");
+}
+
 .header-link {
     font-size: 22px;
     font-weight: 700;

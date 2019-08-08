@@ -134,7 +134,8 @@ var fall3 = function (s) {
 
       var y = s.map(d.concentration, concentrationMin, concentrationMax, 520, 0);
 
-      var x = s.map(d.Year, yearMin, yearMax, 0, 1360 - w);
+      // var x = s.map(d.Year, yearMin, yearMax, 0, s.width - w - 60);
+      var x = s.map(d.Year, yearMin, yearMax, 0, s.width - w - 60);
 
       //Breite des Balkens
       var w = 15;
