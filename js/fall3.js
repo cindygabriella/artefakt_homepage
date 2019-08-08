@@ -89,7 +89,7 @@ var fall3 = function (s) {
       //s.rect(x+35, s.height - y-30, w, y);
       s.rect(x, s.height - y - 10, w, y);
       s.textAlign(s.LEFT, s.CENTER);
-      
+
       // s.text(d.Year, x - 60, y + 0.5 * barHeight);
       s.fill("black");
       s.noStroke();
@@ -139,7 +139,7 @@ var fall3 = function (s) {
       //Breite des Balkens
       var w = 15;
       s.push();                    // <- push a drawing context
-      s.rect(x + 35, s.height - y - 30, w, y);
+      s.rect(x, s.height - y - 10, w, y);
 
       s.textAlign(s.LEFT, s.CENTER);
       // s.text(d.Year, x - 60, y + 0.5 * barHeight);

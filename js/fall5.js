@@ -18,6 +18,7 @@ var fall5 = function (s) {
   var chartHeight = 200;
 
   s.setup = function () {
+    s.noLoop();
     d3.csv("csv/surface.csv", function (d) {
       return {
         Entity: d.Entity,
@@ -89,9 +90,9 @@ var fall5 = function (s) {
         lastAngle,
         lastAngle + s.radians(r)
       );
-      
+
       let v = p5.Vector.fromAngle(lastAngle+0.5*s.radians(r), 0.5*diameter);
-      
+
       s.push();
       s.translate(s.width / 2,s.height / 2);
       s.textSize(14);

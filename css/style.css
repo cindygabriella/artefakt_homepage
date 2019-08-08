@@ -229,6 +229,6 @@ button:active {
   top:1px;
 }
 
-.imageContainer > img:hover {
+/* .imageContainer > img:hover {
   transform: scale(1.5);
-}
+} */
