@@ -26,6 +26,18 @@ var fall5 = function (s) {
       };
     }).then(function (csv) {
       data = csv;
+      //calculate percentages
+      var sum = 0;
+      for (let i = 0; i < data.length; i++) {
+        sum += data[i].tonnes;
+      }
+  
+      for (let i = 0; i < data.length; i++) {
+       var d = data[i];
+       d.tonnesPerc = d.tonnes / sum;
+      }
+
+      
 
       ready = true;
       s.redraw();
@@ -53,7 +65,7 @@ var fall5 = function (s) {
     }
 
     if (chartType == KUCHEN) {
-      drawkuchen(200, data);
+      drawkuchen(400, data);
     }
     else if (chartType == BALKEN) {
       drawbalken();
@@ -63,20 +75,20 @@ var fall5 = function (s) {
   function drawkuchen(diameter, data) {
 
     var tonnesMin = d3.min(data, function (d) {
-      return d.tonnes;
+      return d.tonnesPerc;
     });
 
     var tonnesMax = d3.max(data, function (d) {
-      return d.tonnes;
+      return d.tonnesPerc;
     });
 
-    rScale.domain([tonnesMin, tonnesMax]).range([1, 300]);
+    rScale.domain([0, 1]).range([0, 360]);
 
     var lastAngle = 0;
 
     for (var i = 0; i < data.length; i++) {
       var d = data[i];
-      var r = rScale(d.tonnes);
+      var r = rScale(d.tonnesPerc);
       var green = s.map(i, 0, data.length, 0, 255);
       s.noStroke();
       s.fill(green, 200, 140);
@@ -91,7 +103,7 @@ var fall5 = function (s) {
         lastAngle + s.radians(r)
       );
 
-      let v = p5.Vector.fromAngle(lastAngle+0.5*s.radians(r), 0.5*diameter);
+      let v = p5.Vector.fromAngle(lastAngle+0.5*s.radians(r), 0.5*diameter+30);
 
       s.push();
       s.translate(s.width / 2,s.height / 2);
