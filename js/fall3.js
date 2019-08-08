@@ -23,7 +23,7 @@ var fall3 = function (s) {
       s.redraw();
     });
 
-    s.createCanvas(1400, 600);
+    s.createCanvas(1200, 600);
     s.textSize(12);
     //s.pixelDensity(15);
 
@@ -39,7 +39,7 @@ var fall3 = function (s) {
       s.noStroke();
       return;
     } else {
-      s.background(255,250,250);
+      s.background(255, 250, 250);
     }
 
     s.fill('#c5e3d2');
@@ -53,7 +53,7 @@ var fall3 = function (s) {
     }
   }
 
-function drawBarChart1() {
+  function drawBarChart1() {
 
     var concentrationMin = d3.min(data, function (d) {
       return d.concentration;
@@ -81,21 +81,22 @@ function drawBarChart1() {
 
       var y = s.map(d.concentration, concentrationMin, concentrationMax, 0, 520);
 
-      var x = s.map(d.Year, yearMin, yearMax, 0, s.width-w-60);
+      var x = s.map(d.Year, yearMin, yearMax, 0, s.width - w - 60);
 
       //Breite des Balkens
       var w = 15;
       s.push();                    // <- push a drawing context
-      s.rect(x+35, s.height - y-30, w, y);
-
+      //s.rect(x+35, s.height - y-30, w, y);
+      s.rect(x, s.height - y - 10, w, y);
       s.textAlign(s.LEFT, s.CENTER);
+      
       // s.text(d.Year, x - 60, y + 0.5 * barHeight);
       s.fill("black");
       s.noStroke();
       s.textSize(12);
       s.text(yearMin, 45, 580);
       s.text(yearMax, 1374, 580);
-      s.text(d.Year, x, s.height - y-30);
+      s.text(d.Year, x, s.height - y - 30);
       s.textSize(15);
       s.text(concentrationMin, 0, 570);
       s.text(concentrationMax, 10, 30);
@@ -138,7 +139,7 @@ function drawBarChart1() {
       //Breite des Balkens
       var w = 15;
       s.push();                    // <- push a drawing context
-      s.rect(x+35, s.height - y-30, w, y);
+      s.rect(x + 35, s.height - y - 30, w, y);
 
       s.textAlign(s.LEFT, s.CENTER);
       // s.text(d.Year, x - 60, y + 0.5 * barHeight);
