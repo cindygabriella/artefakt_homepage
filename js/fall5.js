@@ -20,11 +20,12 @@ var fall5 = function (s) {
   s.setup = function () {
     d3.csv("csv/surface.csv", function (d) {
       return {
-        ﻿Entity: d.﻿Entity,
+        Entity: d.Entity,
         tonnes: +d.tonnes,
       };
     }).then(function (csv) {
       data = csv;
+
       ready = true;
       s.redraw();
     });
@@ -47,37 +48,39 @@ var fall5 = function (s) {
       s.background(255, 0, 0);
       return;
     } else {
-      s.background(255,250,250);
+      s.background(255, 250, 250);
     }
 
     if (chartType == KUCHEN) {
-      drawkuchen(400, data);
+      drawkuchen(200, data);
     }
     else if (chartType == BALKEN) {
       drawbalken();
     }
   }
 
-function drawkuchen(diameter, data) {
+  function drawkuchen(diameter, data) {
 
-      var tonnesMin = d3.min(data, function(d){
+    var tonnesMin = d3.min(data, function (d) {
       return d.tonnes;
-      });
+    });
 
-      var tonnesMax = d3.max(data, function(d){
+    var tonnesMax = d3.max(data, function (d) {
       return d.tonnes;
-      });
+    });
 
-      rScale.domain([tonnesMin, tonnesMax]).range([1, 300]);
+    rScale.domain([tonnesMin, tonnesMax]).range([1, 300]);
 
-      var lastAngle = 0;
+    var lastAngle = 0;
 
-      for (var i = 0; i < data.length; i++) {
+    for (var i = 0; i < data.length; i++) {
       var d = data[i];
       var r = rScale(d.tonnes);
       var green = s.map(i, 0, data.length, 0, 255);
       s.noStroke();
       s.fill(green, 200, 140);
+      s.stroke('white');
+
       s.arc(
         s.width / 2,
         s.height / 2,
@@ -86,69 +89,76 @@ function drawkuchen(diameter, data) {
         lastAngle,
         lastAngle + s.radians(r)
       );
-      lastAngle += s.radians(r);
+      
+      let v = p5.Vector.fromAngle(lastAngle+0.5*s.radians(r), 0.5*diameter);
+      
+      s.push();
+      s.translate(s.width / 2,s.height / 2);
       s.textSize(14);
       s.fill("black");
-      s.text(d.tonnes, green, r);
+      s.textAlign(s.CENTER,s.CENTER)
+      s.text(d.tonnes, v.x, v.y);
+      s.pop();
+      lastAngle += s.radians(r);
+    }
   }
-}
 
-function drawbalken() {
+  function drawbalken() {
 
-  var maxPop = d3.max(data, function (d) {
-    return d.tonnes;
-  });
+    var maxPop = d3.max(data, function (d) {
+      return d.tonnes;
+    });
 
-  xScale.domain([0, maxPop])
-    .range([0, chartWidth]);
+    xScale.domain([0, maxPop])
+      .range([0, chartWidth]);
 
-  var minPop = d3.min(data, function (d) {
-    return d.tonnes;
-  });
+    var minPop = d3.min(data, function (d) {
+      return d.tonnes;
+    });
 
-  var entity = d3.set(data, function (d) {
-    return d.Entity;
-  }).values();
+    var entity = d3.set(data, function (d) {
+      return d.Entity;
+    }).values();
 
-  var barHeight = 30;
-  var barGap = 4;
-  chartHeight = entity.length * (barHeight + barGap);
+    var barHeight = 30;
+    var barGap = 4;
+    chartHeight = entity.length * (barHeight + barGap);
 
-  yScale.domain(entity)
-    .range([0, chartHeight - barHeight - barGap]);
+    yScale.domain(entity)
+      .range([0, chartHeight - barHeight - barGap]);
 
-  for (var i = 0; i < data.length; i++) {
+    for (var i = 0; i < data.length; i++) {
 
-    var d = data[i];
+      var d = data[i];
 
-    var barWidth = xScale(d.tonnes);
+      var barWidth = xScale(d.tonnes);
 
-    var y = yScale(d.Entity);
+      var y = yScale(d.Entity);
 
-    s.fill('#D8E5D8');
+      s.fill('#D8E5D8');
 
-    s.noStroke();
-    s.rect(0, y+30, barWidth, barHeight);
+      s.noStroke();
+      s.rect(0, y + 30, barWidth, barHeight);
 
-    s.fill('black');
-    s.noStroke();
-    s.textAlign(s.LEFT, s.CENTER);
-    s.text(d.Entity, barWidth + 10, y + 0.5 * barHeight+30);
-    s.text(maxPop, 690, 10);
-    s.text(minPop, 0, 10);
-    // s.text(d.tonnes, 0, y + 0.5 * barHeight+30 )
+      s.fill('black');
+      s.noStroke();
+      s.textAlign(s.LEFT, s.CENTER);
+      s.text(d.Entity, barWidth + 10, y + 0.5 * barHeight + 30);
+      s.text(maxPop, 690, 10);
+      s.text(minPop, 0, 10);
+      // s.text(d.tonnes, 0, y + 0.5 * barHeight+30 )
+    }
   }
-}
 
-s.kuchen = function () {
+  s.kuchen = function () {
     chartType = KUCHEN;
     s.redraw();
-}
+  }
 
-s.balken = function () {
+  s.balken = function () {
     chartType = BALKEN;
     s.redraw();
-}
+  }
 
 }
 
