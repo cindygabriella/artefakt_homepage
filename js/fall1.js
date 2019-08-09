@@ -98,7 +98,7 @@ var sketch1 = function (s) {
 
       s.rect(x, s.height - y, w, y);
 
-      s.fill("#ba766d");
+
       s.text(d.Year, x, s.height - y - 10);  // <- draw the label
       s.textSize(15);
 

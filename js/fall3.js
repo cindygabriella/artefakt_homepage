@@ -96,8 +96,8 @@ var fall3 = function (s) {
     }
 
     s.textAlign(s.LEFT, s.CENTER);
-    s.fill("#ba766d");
     s.noStroke();
+    s.fill('black');
     s.textSize(13);
     s.text(yearMin, 10, 590);
     s.text(yearMax, 1125, 590);
@@ -150,8 +150,7 @@ var fall3 = function (s) {
     }
 
           s.textAlign(s.LEFT, s.CENTER);
-          // s.text(d.Year, x - 60, y + 0.5 * barHeight);
-          s.fill("#ba766d");
+          s.fill('black');
           s.noStroke();
           s.textSize(13);
           s.text(yearMin, 10, 590);

@@ -108,7 +108,7 @@ var fall5 = function (s) {
       s.push();
       s.translate(s.width / 2,s.height / 2);
       s.textSize(14);
-      s.fill("#ba766d");
+      s.fill("black");
       s.textAlign(s.CENTER,s.CENTER)
       s.text(d.tonnes, v.x, v.y);
       s.pop();
@@ -159,7 +159,7 @@ var fall5 = function (s) {
 
       // s.text(d.tonnes, 0, y + 0.5 * barHeight+30 )
     }
-    s.fill('#ba766d');
+    s.fill('black');
     s.noStroke();
     s.textAlign(s.LEFT, s.CENTER);
     s.text(maxPop, 690, 10);
