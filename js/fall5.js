@@ -31,13 +31,13 @@ var fall5 = function (s) {
       for (let i = 0; i < data.length; i++) {
         sum += data[i].tonnes;
       }
-  
+
       for (let i = 0; i < data.length; i++) {
        var d = data[i];
        d.tonnesPerc = d.tonnes / sum;
       }
 
-      
+
 
       ready = true;
       s.redraw();
@@ -108,7 +108,7 @@ var fall5 = function (s) {
       s.push();
       s.translate(s.width / 2,s.height / 2);
       s.textSize(14);
-      s.fill("black");
+      s.fill("#ba766d");
       s.textAlign(s.CENTER,s.CENTER)
       s.text(d.tonnes, v.x, v.y);
       s.pop();
@@ -155,12 +155,15 @@ var fall5 = function (s) {
 
       s.fill('black');
       s.noStroke();
-      s.textAlign(s.LEFT, s.CENTER);
       s.text(d.Entity, barWidth + 10, y + 0.5 * barHeight + 30);
-      s.text(maxPop, 690, 10);
-      s.text(minPop, 0, 10);
+
       // s.text(d.tonnes, 0, y + 0.5 * barHeight+30 )
     }
+    s.fill('#ba766d');
+    s.noStroke();
+    s.textAlign(s.LEFT, s.CENTER);
+    s.text(maxPop, 690, 10);
+    s.text(minPop, 0, 10);
   }
 
   s.kuchen = function () {

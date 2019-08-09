@@ -42,8 +42,6 @@ var fall3 = function (s) {
       s.background(255, 250, 250);
     }
 
-    s.fill('#c5e3d2');
-    s.noStroke();
 
     if (chartType == BAR_CHART_1) {
       drawBarChart1();
@@ -74,6 +72,7 @@ var fall3 = function (s) {
       return d.Year;
     });
 
+
     var yearCount = yearMax - yearMin;
 
     for (var i = 0; i < data.length; i++) {
@@ -87,22 +86,26 @@ var fall3 = function (s) {
       var w = 15;
       s.push();                    // <- push a drawing context
       //s.rect(x+35, s.height - y-30, w, y);
-      s.rect(x, s.height - y - 10, w, y);
-      s.textAlign(s.LEFT, s.CENTER);
 
-      // s.text(d.Year, x - 60, y + 0.5 * barHeight);
-      s.fill("black");
+      s.fill('#c5e3d2');
       s.noStroke();
-      s.textSize(12);
-      s.text(yearMin, 45, 580);
-      s.text(yearMax, 1374, 580);
-      s.text(d.Year, x, s.height - y - 30);
-      s.textSize(15);
-      s.text(concentrationMin, 0, 570);
-      s.text(concentrationMax, 10, 30);
+      s.rect(x, s.height - y - 10, w, y);
+
 
       s.pop();
     }
+
+    s.textAlign(s.LEFT, s.CENTER);
+    s.fill("#ba766d");
+    s.noStroke();
+    s.textSize(13);
+    s.text(yearMin, 10, 590);
+    s.text(yearMax, 1125, 590);
+    // s.text(d.Year, x, s.height - y - 40);
+    s.textSize(15);
+    s.text(concentrationMin, 0, 570);
+    s.text(concentrationMax, 10, 50);
+
   }
 
 
@@ -139,24 +142,24 @@ var fall3 = function (s) {
 
       //Breite des Balkens
       var w = 15;
-      s.push();                    // <- push a drawing context
-      s.rect(x, s.height - y - 10, w, y);
-
-      s.textAlign(s.LEFT, s.CENTER);
-      // s.text(d.Year, x - 60, y + 0.5 * barHeight);
-      s.fill("black");
+      s.push();
+      s.fill('#c5e3d2');
       s.noStroke();
-      s.textSize(12);
-      s.text(yearMin, 45, 580);
-      s.text(yearMax, 1374, 580);
-      s.text(d.Year, x, s.height - y - 10);
-      s.textSize(15);
-      s.text(concentrationMax, 0, 570);
-      s.text(concentrationMin, 10, 30);
-
+      s.rect(x, s.height - y - 10, w, y);
       s.pop();
     }
 
+          s.textAlign(s.LEFT, s.CENTER);
+          // s.text(d.Year, x - 60, y + 0.5 * barHeight);
+          s.fill("#ba766d");
+          s.noStroke();
+          s.textSize(13);
+          s.text(yearMin, 10, 590);
+          s.text(yearMax, 1125, 590);
+          // s.text(d.Year, x, s.height - y - 10);
+          s.textSize(15);
+          s.text(concentrationMax, 0, 570);
+          s.text(concentrationMin, 10, 50);
   }
 
   s.achsendrehen = function () {

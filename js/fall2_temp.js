@@ -107,6 +107,7 @@ var sketch2 = function (s) {
       s.rect(x, y-25, barWidth, barHeight);
       s.textAlign(s.LEFT, s.CENTER);
       // s.text(d.Year, x - 60, y + 0.5 * barHeight);
+      s.fill("#ba766d")
       s.textSize(16);
       s.text(yearMin,0, 640);
       s.text(yearMax,0, 10);
@@ -162,6 +163,7 @@ var sketch2 = function (s) {
       // s.text(d.median, x, s.height - y - 10);
       // s.text(d.Year, x, s.height - y - 30);
       s.textSize(13);
+      s.fill("#ba766d");
       s.text(yearMin, 48, 645);
       s.text(yearMax, 1385, 645);
       s.textSize(16);

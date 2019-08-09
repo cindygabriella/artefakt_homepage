@@ -119,12 +119,12 @@ var fall4 = function (s) {
       s.textSize(12);
       s.text(d.rivers, barWidth + 10, y + 0.5 * barHeight+30);
     }
-
+    s.fill("#ba766d");
     s.textSize(14);
     s.noStroke();
     s.text(maxPop, 1300, 15);
     s.text(minPop, 0, 15);
-    
+
   }
 
   s.test = function () {

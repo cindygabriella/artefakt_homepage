@@ -98,8 +98,10 @@ var sketch1 = function (s) {
 
       s.rect(x, s.height - y, w, y);
 
+      s.fill("#ba766d");
       s.text(d.Year, x, s.height - y - 10);  // <- draw the label
-      s.textSize(13);
+      s.textSize(15);
+
       s.text("Skala der Y-Achse: 2000000 - " + slider.value(), 40, 140);
       s.text("Skala der X-Achse: " + slider2.value() + " - 2015", 40, 220);
       s.textSize(11);
